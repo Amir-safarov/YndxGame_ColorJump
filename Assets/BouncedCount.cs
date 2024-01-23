@@ -9,7 +9,7 @@ public class BouncedCount : MonoBehaviour
     private int _bounced = 0;
     private void Start()
     {
-        GlobalEventManager.OnPlayerBounced.AddListener(PlayerBounced);
+        GlobalEventManager.OnPlayerBouncedEvent.AddListener(PlayerBounced);
     }
     private void PlayerBounced()
     {

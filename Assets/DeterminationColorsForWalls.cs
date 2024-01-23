@@ -5,11 +5,16 @@ using UnityEngine;
 public class DeterminationColorsForWalls : MonoBehaviour
 {
     [SerializeField] private List<Transform> walls = new List<Transform>();
+    [SerializeField] private bool _isRightWall;
     public List<Color> sideColor = new List<Color>();
+
     private Colors _colors;
+
 
     private void Start()
     {
+        GlobalEventManager.ToLeftWallChangeColorEvent.AddListener(ForLeft);
+        GlobalEventManager.ToRightWallChangeColorEvent.AddListener(ForRight);
         FillTheWallList(transform, walls);
         DeterminateColor(walls);
         FillTheColorsList(transform, walls);
@@ -41,6 +46,23 @@ public class DeterminationColorsForWalls : MonoBehaviour
             return false;
         }
         else return true;
+    }
+
+    private void ForRight()
+    {
+        if (_isRightWall)
+        {
+            DeterminateColor(walls);
+            Debug.Log("Right Change");
+        }
+    }
+    private void ForLeft()
+    {
+        if (!_isRightWall)
+        {
+            DeterminateColor(walls);
+            Debug.Log("Left Change");
+        }
     }
 
     private void DeterminateColor(List<Transform> wallPieces)
