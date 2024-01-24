@@ -2675,6 +2675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walls: []
   _isRightWall: 1
+  _circleMove: {fileID: 1311121029}
   sideColor: []
 --- !u!1 &1884960935
 GameObject:
@@ -3357,6 +3358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walls: []
   _isRightWall: 0
+  _circleMove: {fileID: 1311121029}
   sideColor: []
 --- !u!1 &2095404806
 GameObject:

@@ -20,27 +20,27 @@ public class CircleMove : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _sp = GetComponent<SpriteRenderer>();
-        StartCoroutine(WaitToWalls());
+        StartCoroutine(WaitToChange());
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
-            Move(_isToRight);
+            Move();
     }
-    private void Move(bool toRightDirection)
+    private void Move()
     {
         _rb.velocity = Vector2.zero;
-        if (toRightDirection)
+        if (_isToRight)
             _rb.AddForce(new Vector2(_powerX, _powerY), ForceMode2D.Impulse);
         else
             _rb.AddForce(new Vector2(-_powerX, _powerY), ForceMode2D.Impulse);
     }
 
-    public void GetNewColor(bool toRightDirection)
+    public void GetNewColor()
     {
         int _colorIndex =-1;
-        if (toRightDirection)
+        if (_isToRight)
         {
             _colorIndex = Random.Range(0, _rightWall.sideColor.Count);
             _sp.color = _rightWall.sideColor[_colorIndex];
@@ -50,10 +50,11 @@ public class CircleMove : MonoBehaviour
             _colorIndex = Random.Range(0, _leftWall.sideColor.Count);
             _sp.color = _leftWall.sideColor[_colorIndex];
         }
+        Debug.Log($"Color changed on");
     }
-    private IEnumerator WaitToWalls()
+    private IEnumerator WaitToChange()
     {
         yield return new WaitForSeconds(0.01f);
-        GetNewColor(_isToRight);
+        GetNewColor();
     }
 }

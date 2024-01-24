@@ -6,6 +6,7 @@ public class DeterminationColorsForWalls : MonoBehaviour
 {
     [SerializeField] private List<Transform> walls = new List<Transform>();
     [SerializeField] private bool _isRightWall;
+    [SerializeField] private CircleMove _circleMove;
     public List<Color> sideColor = new List<Color>();
 
     private Colors _colors;
@@ -17,7 +18,6 @@ public class DeterminationColorsForWalls : MonoBehaviour
         GlobalEventManager.ToRightWallChangeColorEvent.AddListener(ForRight);
         FillTheWallList(transform, walls);
         DeterminateColor(walls);
-        FillTheColorsList(transform, walls);
     }
     private void FillTheWallList(Transform host, List<Transform> list)
     {
@@ -53,7 +53,7 @@ public class DeterminationColorsForWalls : MonoBehaviour
         if (_isRightWall)
         {
             DeterminateColor(walls);
-            Debug.Log("Right Change");
+            _circleMove.GetNewColor();
         }
     }
     private void ForLeft()
@@ -61,7 +61,7 @@ public class DeterminationColorsForWalls : MonoBehaviour
         if (!_isRightWall)
         {
             DeterminateColor(walls);
-            Debug.Log("Left Change");
+            _circleMove.GetNewColor();
         }
     }
 
@@ -80,10 +80,12 @@ public class DeterminationColorsForWalls : MonoBehaviour
             wallPieces[i].GetComponent<SpriteRenderer>().color = _colors.colorsDict[colorIndex];
             previousColorIndex = colorIndex;
         }
+        FillTheColorsList(transform, walls);
     }
 
     private void FillTheColorsList(Transform host, List<Transform> list)
     {
+        sideColor.Clear();
         for (int i = 0; i < list.Count; i++)
             sideColor.Add(host.GetChild(i).GetComponent<SpriteRenderer>().color);
     }
