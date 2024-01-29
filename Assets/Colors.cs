@@ -11,5 +11,6 @@ public class Colors
         { 3, new Color(0f, 0.8706f, 1f)},//Cyan
         { 4, new Color(0.2980f, 0.8549f, 0.3922f)},//Green
         { 5, new Color(1f, 0.5451f, 0.0078f)},//Orange
+        { 6, new Color(179f/255f, 9f/255f, 145f/255f)},//Pink
     };
 }

@@ -50,7 +50,6 @@ public class CircleMove : MonoBehaviour
             _colorIndex = Random.Range(0, _leftWall.sideColor.Count);
             _sp.color = _leftWall.sideColor[_colorIndex];
         }
-        Debug.Log($"Color changed on");
     }
     private IEnumerator WaitToChange()
     {
