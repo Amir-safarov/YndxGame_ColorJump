@@ -22,8 +22,9 @@ public class SetColorForPlayer : MonoBehaviour
         }
         else
         {
+            collision.gameObject.GetComponent<PlayerMove>()._isToRight = _toRightDirection;
+            collision.gameObject.GetComponent<PlayerChangeColor>()._isToRight = _toRightDirection;
             _touchThePlayer.Invoke(_toRightDirection);
-            collision.gameObject.GetComponent<CircleMove>()._isToRight = _toRightDirection;
             GlobalEventManager.SendBounced();
             if (_toRightDirection)
                 GlobalEventManager.LeftWallChangeColor();
