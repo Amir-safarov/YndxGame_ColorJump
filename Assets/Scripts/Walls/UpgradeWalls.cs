@@ -8,9 +8,9 @@ public class UpgradeWalls : MonoBehaviour
     [SerializeField] private PlayerChangeColor _player;
     [SerializeField] private GameObject _wallPiece;
     [SerializeField] private DeterminationColorsForWalls _determinationColor;
-    public static UpgradeWalls Instance;
 
-    private bool onceUp = true;
+    private bool beforeUp = true;
+    private WallsPieceStats _wallPositions = new WallsPieceStats();
     private void Awake()
     {
         GlobalEventManager.OnBouncedCountReached.AddListener(ReviewWalls);
@@ -18,25 +18,26 @@ public class UpgradeWalls : MonoBehaviour
 
     public void ReviewWalls(int bounced)
     {
-        if (_isRightWall && (bounced == 5 || bounced == 15 || bounced == 25))
+        if (_isRightWall && (bounced == 5 || bounced == 11 || bounced ==15))
         {
-            if (onceUp)
+            if (beforeUp || bounced == 15)
             {
                 GlobalVariables.wallRank++;
-                onceUp = false;
+                beforeUp = false;
             }
             ReBuildingWalls();
             print("Right check");
         }
-        if (!_isRightWall && (bounced == 10 || bounced == 20 || bounced == 25))
+        if (!_isRightWall && (bounced == 6 || bounced == 10 || bounced ==16))
         {
             ReBuildingWalls();
             print("Left check");
-            GlobalVariables.wallRank++;
+            if (bounced == 6)
+                GlobalVariables.wallRank++;
         }
+        print($"{GlobalVariables.wallRank}");
     }
 
-    private WallsPieceStats _wallPositions;
 
     /*_wallPositions = new WallsPieceStats();
 Debug.Log($"Value before up: {GlobalVariables.wallRank}");
@@ -55,20 +56,18 @@ else return;*/
 
     private void BildUpgrades()
     {
-        print($"Upgrade with {GlobalVariables.wallRank} picese");
-        /*transform.GetChild(0).position = new Vector3(transform.GetChild(0).position.x, _wallPositions.yAaxisStartPositions[GlobalVariables.wallRank]);
-        transform.GetChild(0).localScale = new Vector3(transform.GetChild(0).localScale.x, _wallPositions.yScale[GlobalVariables.wallRank]);
+        //print($"Upgrade with {GlobalVariables.wallRank} picese");
+        Transform childTransform = transform.GetChild(0);
+        childTransform.position = new Vector3(childTransform.position.x, _wallPositions.yAaxisStartPositions[GlobalVariables.wallRank]);
+        childTransform.localScale = new Vector3(childTransform.localScale.x, _wallPositions.yScale[GlobalVariables.wallRank]);
+
         for (int i = 1; i < GlobalVariables.wallRank; i++)
         {
-            Vector3 previousPosition = new Vector3(transform.GetChild(0).position.x, _wallPositions.yAaxisStartPositions[GlobalVariables.wallRank]); ;
-            Vector3 previousScale = new Vector3(transform.GetChild(0).localScale.x, _wallPositions.yScale[GlobalVariables.wallRank]); ;
-
-            Vector3 newPosition = new Vector3(previousPosition.x, previousPosition.y - previousScale.y, previousPosition.z);
-            Vector3 newScale = new Vector3(previousScale.x, _wallPositions.yScale[GlobalVariables.wallRank]);
-
-            transform.GetChild(1).position = newPosition;
-            transform.GetChild(1).localScale = newScale;
-        }*/
+            Transform nextChild = transform.GetChild(i);
+            nextChild.position = new Vector3(transform.GetChild(i - 1).position.x, transform.GetChild(i - 1).position.y - transform.GetChild(i - 1).localScale.y);
+            nextChild.localScale = new Vector3(transform.GetChild(i - 1).localScale.x, transform.GetChild(i - 1).localScale.y);
+            //currentTransform.position = new Vector3(currentTransform.position.x, currentTransform.position.y - currentTransform.localScale.y, currentTransform.position.z);
+        }
     }
 
     private void DestroyWallsChildren()
