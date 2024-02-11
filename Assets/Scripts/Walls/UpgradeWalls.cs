@@ -26,12 +26,10 @@ public class UpgradeWalls : MonoBehaviour
                 beforeUp = false;
             }
             ReBuildingWalls();
-            print("Right check");
         }
         if (!_isRightWall && (bounced == 6 || bounced == 10 || bounced ==16))
         {
             ReBuildingWalls();
-            print("Left check");
             if (bounced == 6)
                 GlobalVariables.wallRank++;
         }

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -82,7 +80,7 @@ public class DeterminationColorsForWalls : MonoBehaviour
             int colorIndex;
 
             do
-                colorIndex = UnityEngine.Random.Range(0, 3);
+                colorIndex = Random.Range(0,GlobalVariables.wallRank);
             while (colorIndex == previousColorIndex);
 
             wallPieces[i].GetComponent<SpriteRenderer>().color = _colors.colorsDict[colorIndex];
