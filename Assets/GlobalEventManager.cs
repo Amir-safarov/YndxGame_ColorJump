@@ -8,6 +8,7 @@ public class GlobalEventManager : MonoBehaviour
     public static UnityEvent OnPlayerBouncedEvent = new UnityEvent();
     public static UnityEvent ToLeftWallChangeColorEvent = new UnityEvent();
     public static UnityEvent ToRightWallChangeColorEvent = new UnityEvent();
+    public static UnityEvent PlayereDeadEvent = new UnityEvent();
     public static UnityEvent<int> OnBouncedCountReached = new UnityEvent<int>();
 
     public static void SendToUpgrade(int bounced)
@@ -26,4 +27,10 @@ public class GlobalEventManager : MonoBehaviour
     {
         ToLeftWallChangeColorEvent.Invoke();
     }
+    public static void RegistradeOfDead()
+    {
+        PlayereDeadEvent.Invoke();
+    }
+
+
 }
