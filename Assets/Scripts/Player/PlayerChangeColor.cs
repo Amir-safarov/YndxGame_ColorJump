@@ -14,6 +14,7 @@ public class PlayerChangeColor : MonoBehaviour
         _sp = GetComponent<SpriteRenderer>();
         StartCoroutine(WaitToChange());
     }
+
     public void GetNewColor()
     {
         int _colorIndex;

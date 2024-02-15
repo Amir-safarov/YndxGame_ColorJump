@@ -53,8 +53,6 @@ public class PlayerMove : MonoBehaviour
                 _rb.AddForce(new Vector2(_powerX, _powerY), ForceMode2D.Impulse);
             else
                 _rb.AddForce(new Vector2(-_powerX, _powerY), ForceMode2D.Impulse);
-            if (_rb.velocity.magnitude < 1f)
-                Debug.Log("Сила импульса израсходована.");
         }
         else
             BlockMove();

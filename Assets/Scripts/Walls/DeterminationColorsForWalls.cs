@@ -5,6 +5,7 @@ public class DeterminationColorsForWalls : MonoBehaviour
 {
     [SerializeField] private bool _isRightWall;
     [SerializeField] private List<Transform> walls = new List<Transform>();
+
     public List<Color> sideColor = new List<Color>();
 
     private Colors _colors;
@@ -32,15 +33,6 @@ public class DeterminationColorsForWalls : MonoBehaviour
             DeterminateColor(walls);
         }
 
-    }
-    internal void cleare()
-    {
-        walls.Clear();
-        sideColor.Clear();
-    }
-    internal void UseTL()
-    {
-        FillTheWallList();
     }
     private bool CheckListOnNull(List<Transform> list)
     {

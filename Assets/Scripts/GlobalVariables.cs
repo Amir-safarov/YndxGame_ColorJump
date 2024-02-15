@@ -6,6 +6,7 @@ public class GlobalVariables : MonoBehaviour
 
     private void Awake()
     {
+
         wallRank = 3;
     }
 }

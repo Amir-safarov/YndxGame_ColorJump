@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SetColorForPlayer : MonoBehaviour
+public class PlayerRedirection : MonoBehaviour
 {
     [SerializeField] private bool _toRightDirection;
     [SerializeField] private UnityEvent<bool> _touchThePlayer;
