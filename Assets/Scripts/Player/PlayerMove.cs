@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -25,11 +26,6 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
             Move();
-        else
-        {
-            if (!_rb.IsSleeping())
-                _rb.AddForce(Vector3.down * fallForce);
-        }
     }
     public void OpenMove()
     {
@@ -39,7 +35,11 @@ public class PlayerMove : MonoBehaviour
 
     private void BlockMove()
     {
+        _rb.gravityScale = 0;
         _rb.Sleep();
+        transform.position = new Vector2(-2,0);
+        _canMove = false;
+        _isToRight = true;
     }
 
     private void Move()
