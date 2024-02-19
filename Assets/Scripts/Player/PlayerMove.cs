@@ -17,16 +17,27 @@ public class PlayerMove : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        Time.timeScale = 1.2f;
+        Time.timeScale = 1.3f;
         GlobalEventManager.PlayereDeadEvent.AddListener(BlockMove);
         Move();
     }
 
     private void Update()
     {
+        PLayerRotate();
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
             Move();
     }
+
+    private void PLayerRotate()
+    {
+        if (_isToRight)
+            transform.Rotate(0, 0, -100 * Time.deltaTime);
+        else
+            transform.Rotate(0, 0, 100 * Time.deltaTime);
+
+    }
+
     public void OpenMove()
     {
         _canMove = true;
@@ -37,7 +48,7 @@ public class PlayerMove : MonoBehaviour
     {
         _rb.gravityScale = 0;
         _rb.Sleep();
-        transform.position = new Vector2(-2,0);
+        transform.position = new Vector2(-2, 0);
         _canMove = false;
         _isToRight = true;
     }

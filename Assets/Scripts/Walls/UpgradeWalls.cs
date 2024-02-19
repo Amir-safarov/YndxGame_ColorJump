@@ -33,7 +33,6 @@ public class UpgradeWalls : MonoBehaviour
             if (bounced == 6)
                 GlobalVariables.wallRank++;
         }
-        print($"{GlobalVariables.wallRank}");
     }
 
     private void RebuildingWalls()
