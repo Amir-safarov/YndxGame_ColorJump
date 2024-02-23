@@ -1,6 +1,5 @@
-using System;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class UpgradeWalls : MonoBehaviour
 {
@@ -35,17 +34,28 @@ public class UpgradeWalls : MonoBehaviour
         }
     }
 
-    private void RebuildingWalls()
+    public void RebuildingWalls()
     {
+        DisableTransformsChild();
         Transform childTransform = transform.GetChild(0);
         childTransform.position = new Vector3(childTransform.position.x, WallsPieceStats.yAaxisStartPositions[GlobalVariables.wallRank]);
         childTransform.localScale = new Vector3(childTransform.localScale.x, WallsPieceStats.yScale[GlobalVariables.wallRank]);
+        childTransform.gameObject.SetActive(true);
 
         for (int i = 1; i < GlobalVariables.wallRank; i++)
         {
             Transform nextChild = transform.GetChild(i);
             nextChild.position = new Vector3(transform.GetChild(i - 1).position.x, transform.GetChild(i - 1).position.y - transform.GetChild(i - 1).localScale.y);
             nextChild.localScale = new Vector3(transform.GetChild(i - 1).localScale.x, transform.GetChild(i - 1).localScale.y);
+            nextChild.gameObject.SetActive(true);
+        }
+    }
+
+    private void DisableTransformsChild()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 }

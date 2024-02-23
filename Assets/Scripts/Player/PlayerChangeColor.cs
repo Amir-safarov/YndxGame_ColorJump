@@ -30,6 +30,11 @@ public class PlayerChangeColor : MonoBehaviour
         }
     }
 
+    public void ResetDirection()
+    {
+        _isToRight = true;
+    }
+
     private IEnumerator WaitToChange()
     {
         yield return new WaitForSeconds(0.01f);

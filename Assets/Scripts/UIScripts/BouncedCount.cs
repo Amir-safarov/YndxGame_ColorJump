@@ -38,10 +38,12 @@ public class BouncedCount : MonoBehaviour
         UpdateText();
         GlobalEventManager.SendToUpgrade(_bounced);
     }
+
     private void UpdateText()
     {
         GetComponent<TextMeshProUGUI>().text = _bounced.ToString();
     }
+
     private void CheckHighScore()
     {
         if(_bounced > _highScore)

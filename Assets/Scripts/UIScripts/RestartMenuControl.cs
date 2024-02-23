@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 
 public class RestartMenuControl : MonoBehaviour
 {
     [SerializeField] private GameObject _restartMenu;
+
     private void Start()
     {
         GlobalEventManager.PlayereDeadEvent.AddListener(RestartMenuOn);
@@ -11,10 +11,10 @@ public class RestartMenuControl : MonoBehaviour
 
     private void RestartMenuOn()
     {
-        _restartMenu.gameObject.SetActive(true);
+        _restartMenu.SetActive(true);
     }
     public void RestartMenuOff()
     {
-        _restartMenu.gameObject.SetActive(false);
+        _restartMenu.SetActive(false);
     }
 }

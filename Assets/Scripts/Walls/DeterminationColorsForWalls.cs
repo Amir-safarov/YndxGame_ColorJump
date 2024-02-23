@@ -21,7 +21,7 @@ public class DeterminationColorsForWalls : MonoBehaviour
         FillTheWallList();
     }
 
-    private void FillTheWallList()
+    public void FillTheWallList()
     {
         walls.Clear();
         if (CheckListOnNull(walls))
@@ -32,8 +32,8 @@ public class DeterminationColorsForWalls : MonoBehaviour
                 walls.Add(transform.GetChild(i));
             DeterminateColor(walls);
         }
-
     }
+
     private bool CheckListOnNull(List<Transform> list)
     {
         if (list != null)

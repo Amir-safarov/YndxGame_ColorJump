@@ -6,7 +6,11 @@ public class GlobalVariables : MonoBehaviour
 
     private void Awake()
     {
+        ResetToDeafoult();
+    }
 
+    public void ResetToDeafoult()
+    {
         wallRank = 3;
     }
 }

@@ -26,6 +26,7 @@ public class PlayerRedirection : MonoBehaviour
             collision.gameObject.GetComponent<PlayerChangeColor>()._isToRight = _toRightDirection;
             _touchThePlayer.Invoke(_toRightDirection);
             GlobalEventManager.SendBounced();
+            GlobalEventManager.SendToCoinRespawn();
             if (_toRightDirection)
                 GlobalEventManager.LeftWallChangeColor();
             else

@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -35,7 +32,6 @@ public class PlayerMove : MonoBehaviour
             transform.Rotate(0, 0, -100 * Time.deltaTime);
         else
             transform.Rotate(0, 0, 100 * Time.deltaTime);
-
     }
 
     public void OpenMove()
@@ -48,7 +44,6 @@ public class PlayerMove : MonoBehaviour
     {
         _rb.gravityScale = 0;
         _rb.Sleep();
-        transform.position = new Vector2(-2, 0);
         _canMove = false;
         _isToRight = true;
     }
