@@ -9,6 +9,7 @@ public class BackToStartState : MonoBehaviour
     [SerializeField] private GlobalVariables _variables;
     [SerializeField] private UpgradeWalls _rightWallsUpgrade;
     [SerializeField] private UpgradeWalls _leftWallsUpgrade;
+    [SerializeField] private PuckUpCoin _coin;
 
     public void ReturnState()
     {
@@ -20,6 +21,7 @@ public class BackToStartState : MonoBehaviour
         _leftWalls.FillTheWallList();
         _playerChangeColor.ResetDirection();
         _playerChangeColor.GetNewColor();
+        _coin.ResetState();
     }
 
 }

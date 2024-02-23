@@ -1,17 +1,27 @@
 using UnityEngine;
+
 public class PuckUpCoin : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D _spawnColider;
     [SerializeField] private PlayerMove _player;
+    [SerializeField] private CoinsValue _putOn;
 
     private float _xSpawnRange;
     private float _ySpawnRange;
-    private bool _needSpawn = true;
+    private bool _needSpawn;
+
     private void Start()
     {
+        ResetState();
         GlobalEventManager.CoinRespawnEvent.AddListener(Spawn);
+        _putOn.ActivateCoinsPutOn();
     }
 
+    public void ResetState()
+    {
+        _needSpawn = true;
+        transform.gameObject.SetActive(false);
+    }
     private void Spawn()
     {
         if (_needSpawn)
@@ -28,6 +38,7 @@ public class PuckUpCoin : MonoBehaviour
     {
         if (collision.gameObject == _player.gameObject)
         {
+            GlobalEventManager.SendToCoinReceive();
             _needSpawn = true;
             transform.gameObject.SetActive(false);
         }
