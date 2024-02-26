@@ -21,9 +21,4 @@ public class ReceivedNowCoins : MonoBehaviour
         else
             _receivedCoinText.text = $"+{_coins.GetReceivedCoins()}";
     }
-
-    private void OnDisable()
-    {
-        _receivedCoins = 0;
-    }
 }

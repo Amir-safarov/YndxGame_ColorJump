@@ -5,7 +5,6 @@ public class CoinsValue : MonoBehaviour
 {
     private int _coins;
     private int _receivedCoins;
-    private int _totalCoins;
     private const string CurrentCoins = "CurrentCoins";
 
     private void Awake()
@@ -35,6 +34,17 @@ public class CoinsValue : MonoBehaviour
         _coins += _receivedCoins;
         GetComponent<TextMeshProUGUI>().text = (_coins).ToString();
         PlayerPrefs.SetInt(CurrentCoins, _coins + _receivedCoins);
+    }
+
+    public void GetBonus()
+    {
+        _receivedCoins += 20;
+        ShowCoinsCount();
+    }
+
+    public void ResetBonuceShow()
+    {
+        GlobalVariables.showBonuce = false;
     }
 
     private void AddCoins()
