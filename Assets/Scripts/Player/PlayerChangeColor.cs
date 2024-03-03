@@ -9,24 +9,28 @@ public class PlayerChangeColor : MonoBehaviour
     private SpriteRenderer _sp;
     internal bool _isToRight = true;
 
+    int _colorIndex;
+
     private void Start()
     {
         _sp = GetComponent<SpriteRenderer>();
         StartCoroutine(WaitToChange());
     }
 
+
     public void GetNewColor()
     {
-        int _colorIndex;
         if (_isToRight)
         {
-            _colorIndex = Random.Range(0, 3);
+            _colorIndex = Random.Range(0, GlobalVariables.wallRank);
             _sp.color = _rightWall.sideColor[_colorIndex];
+            print($"{GlobalVariables.wallRank}");
         }
         else
         {
-            _colorIndex = Random.Range(0, 3);
+            _colorIndex = Random.Range(0, GlobalVariables.wallRank);
             _sp.color = _leftWall.sideColor[_colorIndex];
+            print($"{GlobalVariables.wallRank}");
         }
     }
 

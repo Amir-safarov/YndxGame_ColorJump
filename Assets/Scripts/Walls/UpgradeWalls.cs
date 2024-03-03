@@ -5,7 +5,6 @@ public class UpgradeWalls : MonoBehaviour
 {
     [SerializeField] private bool _isRightWall;
     [SerializeField] private PlayerChangeColor _player;
-    [SerializeField] private GameObject _wallPiece;
     [SerializeField] private DeterminationColorsForWalls _determinationColor;
 
     private bool beforeUp = true;
