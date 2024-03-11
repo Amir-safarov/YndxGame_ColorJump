@@ -24,7 +24,6 @@ public class PlayerChangeColor : MonoBehaviour
         {
             _colorIndex = Random.Range(0, GlobalVariables.wallRank);
             _sp.color = _rightWall.sideColor[_colorIndex];
-            print($"{GlobalVariables.wallRank}");
         }
         else
         {

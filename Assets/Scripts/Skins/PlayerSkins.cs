@@ -1,0 +1,25 @@
+public enum PlayerSkin
+{
+    Circle,
+    Atom,
+    Balloon,
+    Basketball,
+    Cloud,
+    Clover,
+    Cross,
+    Crown,
+    Flower,
+    Football,
+    Gear,
+    Ghost,
+    Heart,
+    MusicNote,
+    Paw,
+    Radiation,
+    Rudder,
+    Smiley,
+    Sun,
+    Tennis,
+    Volleyball,
+    YinYang
+}
