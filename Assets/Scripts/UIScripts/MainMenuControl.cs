@@ -8,12 +8,14 @@ public class MainMenuControl : MonoBehaviour
     {
         MainMenuOn();
     }
+
     public void MainMenuOff()
     {
-        mainMenu.gameObject.SetActive(false);
+        mainMenu.SetActive(false);
     }
+
     public void MainMenuOn()
     {
-        mainMenu.gameObject.SetActive(true);
+        mainMenu.SetActive(true);
     }
 }

@@ -6,7 +6,7 @@ public class SkinItem : MonoBehaviour
 {
     private const int unselectedColorNumber = 0;
     private const int selectedColorNumber = 1;
-    
+    private float skinScale;
 
     [SerializeField] private Sprite _skinImage;
     [SerializeField] private PlayerSkin _skinsType;
@@ -16,7 +16,7 @@ public class SkinItem : MonoBehaviour
     [SerializeField] private ShopItems _shopItems;
 
     public bool IsPurchased { get; private set; }
-    public bool IsEquipped { get;  set; }
+    public bool IsEquipped { get; set; }
 
     private void OnValidate()
     {
@@ -67,7 +67,10 @@ public class SkinItem : MonoBehaviour
         {
             BuyButtonOff();
             SelectButtonOff();
-            _childImage.color = SkinColors.skinsColor[1];
+            skinScale = ParametersOfSelectedSkin.skinsSize[selectedColorNumber];
+            _childImage.color = ParametersOfSelectedSkin.skinsColor[selectedColorNumber];
+            _childImage.transform.localScale = new Vector2(skinScale, skinScale);
+            GlobalEventManager.ChangeSkin(_skinImage);
             return;
         }
         if (IsPurchased)
@@ -75,14 +78,18 @@ public class SkinItem : MonoBehaviour
             BuyButtonOff();
             if (!IsEquipped)
                 SelectButtonOn();
-            _childImage.color = SkinColors.skinsColor[unselectedColorNumber];
+            skinScale = ParametersOfSelectedSkin.skinsSize[unselectedColorNumber];
+            _childImage.color = ParametersOfSelectedSkin.skinsColor[unselectedColorNumber];
+            _childImage.transform.localScale = new Vector2(skinScale, skinScale);
             return;
         }
         if (!IsPurchased || (!IsEquipped && !IsPurchased))
         {
             BuyButtonOn();
             SelectButtonOff();
-            _childImage.color = SkinColors.skinsColor[unselectedColorNumber];
+            skinScale = ParametersOfSelectedSkin.skinsSize[unselectedColorNumber];
+            _childImage.color = ParametersOfSelectedSkin.skinsColor[unselectedColorNumber];
+            _childImage.transform.localScale = new Vector2(skinScale, skinScale);
             return;
         }
     }

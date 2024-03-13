@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,11 +10,17 @@ public class GlobalEventManager : MonoBehaviour
     public static UnityEvent PlayereDeadEvent = new UnityEvent();
     public static UnityEvent CoinRespawnEvent = new UnityEvent();
     public static UnityEvent CoinReceivedEvent = new UnityEvent();
+    public static Action<Sprite> PlayersSkinChangeEvent;
     public static UnityEvent<int> OnBouncedCountReached = new UnityEvent<int>();
 
     public static void SendToUpgrade(int bounced)
     {
         OnBouncedCountReached.Invoke(bounced); 
+    }
+
+    public static void ChangeSkin(Sprite skin)
+    {
+        PlayersSkinChangeEvent.Invoke(skin);
     }
 
     public static void SendToCoinRespawn()
