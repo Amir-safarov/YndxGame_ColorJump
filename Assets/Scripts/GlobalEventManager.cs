@@ -7,7 +7,8 @@ public class GlobalEventManager : MonoBehaviour
     public static UnityEvent OnPlayerBouncedEvent = new UnityEvent();
     public static UnityEvent ToLeftWallChangeColorEvent = new UnityEvent();
     public static UnityEvent ToRightWallChangeColorEvent = new UnityEvent();
-    public static UnityEvent PlayereDeadEvent = new UnityEvent();
+    public static UnityEvent PlayerDeadEvent = new UnityEvent();
+    public static UnityEvent RestartMenu = new UnityEvent();
     public static UnityEvent CoinRespawnEvent = new UnityEvent();
     public static UnityEvent CoinReceivedEvent = new UnityEvent();
     public static Action<Sprite> PlayersSkinChangeEvent;
@@ -27,6 +28,11 @@ public class GlobalEventManager : MonoBehaviour
     {
         CoinRespawnEvent.Invoke();
     }
+    
+    public static void ActivateRestarMenu()
+    {
+        RestartMenu.Invoke();
+    }
 
     public static void SendToCoinReceive()
     {
@@ -42,12 +48,14 @@ public class GlobalEventManager : MonoBehaviour
     {
         ToRightWallChangeColorEvent.Invoke();
     }
+
     public static void LeftWallChangeColor()
     {
         ToLeftWallChangeColorEvent.Invoke();
     }
+
     public static void RegistradeOfDead()
     {
-        PlayereDeadEvent.Invoke();
+        PlayerDeadEvent.Invoke();
     }
 }

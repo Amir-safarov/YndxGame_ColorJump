@@ -48,16 +48,25 @@ public class SkinItem : MonoBehaviour
 
     private void LoadEquippedSkin()
     {
-        string equippedSkin = PlayerPrefs.GetString("EquippedSkin", "");
-
-        if (!string.IsNullOrEmpty(equippedSkin) && Enum.IsDefined(typeof(PlayerSkin), equippedSkin))
+        string equippedSkin;
+        if (!PlayerPrefs.HasKey("EquippedSkin") && _skinsType == PlayerSkin.Circle)
         {
-            PlayerSkin skin = (PlayerSkin)Enum.Parse(typeof(PlayerSkin), equippedSkin);
+            BuyButtonClick();
+            EquipButtonClick();
+        }
+        else
+        {
+            equippedSkin = PlayerPrefs.GetString("EquippedSkin", "");
 
-            if (skin == _skinsType)
-                IsEquipped = true;
-            else
-                IsEquipped = false;
+            if (!string.IsNullOrEmpty(equippedSkin) && Enum.IsDefined(typeof(PlayerSkin), equippedSkin))
+            {
+                PlayerSkin skin = (PlayerSkin)Enum.Parse(typeof(PlayerSkin), equippedSkin);
+
+                if (skin == _skinsType)
+                    IsEquipped = true;
+                else
+                    IsEquipped = false;
+            }
         }
     }
 

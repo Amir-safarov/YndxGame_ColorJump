@@ -7,7 +7,7 @@ public class RestartMenuControl : MonoBehaviour
 
     private void Start()
     {
-        GlobalEventManager.PlayereDeadEvent.AddListener(RestartMenuOn);
+        GlobalEventManager.RestartMenu.AddListener(RestartMenuOn);
     }
 
     private void RestartMenuOn()

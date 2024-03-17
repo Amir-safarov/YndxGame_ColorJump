@@ -6,6 +6,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _powerX;
     [SerializeField] private float fallForce;
 
+    private const float _timeScale = 1.4f;
+    private const int _rotationSpeed = 130;
+
     private Rigidbody2D _rb;
 
     internal bool _isToRight = true;
@@ -14,8 +17,7 @@ public class PlayerMove : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        Time.timeScale = 1.3f;
-        GlobalEventManager.PlayereDeadEvent.AddListener(BlockMove);
+        Time.timeScale = _timeScale;
         Move();
     }
 
@@ -29,9 +31,9 @@ public class PlayerMove : MonoBehaviour
     private void PLayerRotate()
     {
         if (_isToRight)
-            transform.Rotate(0, 0, -100 * Time.deltaTime);
+            transform.Rotate(0, 0, -_rotationSpeed * Time.deltaTime);
         else
-            transform.Rotate(0, 0, 100 * Time.deltaTime);
+            transform.Rotate(0, 0, _rotationSpeed * Time.deltaTime);
     }
 
     public void OpenMove()
@@ -40,7 +42,7 @@ public class PlayerMove : MonoBehaviour
         Move();
     }
 
-    private void BlockMove()
+    public void BlockMove()
     {
         _rb.gravityScale = 0;
         _rb.Sleep();
