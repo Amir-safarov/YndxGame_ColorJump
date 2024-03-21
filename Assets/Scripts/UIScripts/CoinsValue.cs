@@ -9,36 +9,44 @@ public class CoinsValue : MonoBehaviour
 
     private void Awake()
     {
-        _coins = PlayerPrefs.GetInt(CurrentCoins);
-        if (!PlayerPrefs.HasKey(CurrentCoins))
-            PlayerPrefs.SetInt(CurrentCoins, _coins);
-    }
-
-    public void ActivateCoinsPutOn()
-    {
-        GlobalEventManager.CoinReceivedEvent.AddListener(AddCoins);
+        GetSavedCoins();
+        GlobalEventManager.CoinView.AddListener(UpdateCurrentCoinsValue);
     }
 
     private void OnEnable()
     {
-        ShowCoinsCount();
+        UpdateCurrentCoinsValue();
     }
+
 
     private void OnDisable()
     {
         _receivedCoins = 0;
     }
 
-    private void ShowCoinsCount()
+    public int GetReceivedCoins()
     {
-        _coins += _receivedCoins;
-        GetComponent<TextMeshProUGUI>().text = (_coins).ToString();
-        PlayerPrefs.SetInt(CurrentCoins, _coins + _receivedCoins);
+        return _receivedCoins;
+    }
+
+    public void BuyNewSkin()
+    {
+        _coins -= 100;
+        SetCurrentCoins();
+    }
+
+    public int GetCurrentCoinsCount()
+    {
+        FoldCoins();
+        GetSavedCoins();
+        return _coins;
     }
 
     public void GetBonus()
     {
         _receivedCoins += 20;
+        SetCurrentCoins();
+        GetSavedCoins();
         ShowCoinsCount();
     }
 
@@ -47,13 +55,42 @@ public class CoinsValue : MonoBehaviour
         GlobalVariables.showBonuce = false;
     }
 
+    private void UpdateCurrentCoinsValue()
+    {
+        SetCurrentCoins();
+        GetSavedCoins();
+        ShowCoinsCount();
+        _receivedCoins = 0;
+    }
+    private void GetSavedCoins()
+    {
+        _coins = PlayerPrefs.GetInt(CurrentCoins);
+        if (!PlayerPrefs.HasKey(CurrentCoins))
+            PlayerPrefs.SetInt(CurrentCoins, _coins);
+    }
+
+    private void SetCurrentCoins()
+    {
+        PlayerPrefs.SetInt(CurrentCoins, _coins + _receivedCoins);
+    }
+
+    public void ActivateCoinsPutOn()
+    {
+        GlobalEventManager.CoinReceivedEvent.AddListener(AddCoins);
+    }
+
+    private void ShowCoinsCount()
+    {
+        GetComponent<TextMeshProUGUI>().text = (_coins).ToString();
+    }
+
+    private void FoldCoins()
+    {
+        _coins += _receivedCoins;
+    }
+
     private void AddCoins()
     {
         _receivedCoins++;
-    }
-
-    public int GetReceivedCoins()
-    {
-        return _receivedCoins;
     }
 }

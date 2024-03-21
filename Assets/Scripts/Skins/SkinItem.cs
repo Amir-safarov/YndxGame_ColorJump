@@ -7,6 +7,8 @@ public class SkinItem : MonoBehaviour
     private const int unselectedColorNumber = 0;
     private const int selectedColorNumber = 1;
     private float skinScale;
+    private int skinCost = 100;
+    private CoinsValue _coins = new CoinsValue();
 
     [SerializeField] private Sprite _skinImage;
     [SerializeField] private PlayerSkin _skinsType;
@@ -125,18 +127,18 @@ public class SkinItem : MonoBehaviour
 
     public void BuyButtonClick()
     {
-        if (!IsPurchased)
+        _coins = new CoinsValue();
+        if (!IsPurchased && _coins.GetCurrentCoinsCount() >= skinCost)
         {
             IsPurchased = true;
             PlayerPrefs.SetInt(_skinsType.ToString() + "Purchased", 1);
             PlayerPrefs.Save();
-
+            _coins.BuyNewSkin(); 
             Debug.Log($"Куплен скин: {_skinsType}");
             BuyButtonOff();
             if (!IsEquipped)
-            {
                 SelectButtonOn();
-            }
+            GlobalEventManager.UpdateCoinsView();
         }
     }
 
