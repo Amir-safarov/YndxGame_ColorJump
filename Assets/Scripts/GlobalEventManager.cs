@@ -13,6 +13,7 @@ public class GlobalEventManager : MonoBehaviour
     public static UnityEvent CoinView = new UnityEvent();
     public static UnityEvent CoinReceivedEvent = new UnityEvent();
     public static Action<Sprite> PlayersSkinChangeEvent;
+    public static Action<PlayerSkin> SkinNameChangeEvent;
     public static UnityEvent<int> OnBouncedCountReached = new UnityEvent<int>();
 
     public static void SendToUpgrade(int bounced)
@@ -23,6 +24,11 @@ public class GlobalEventManager : MonoBehaviour
     public static void ChangeSkin(Sprite skin)
     {
         PlayersSkinChangeEvent.Invoke(skin);
+    }
+    
+    public static void ChangeSkinName(PlayerSkin skinName)
+    {
+        SkinNameChangeEvent.Invoke(skinName);
     }
 
     public static void SendToCoinRespawn()

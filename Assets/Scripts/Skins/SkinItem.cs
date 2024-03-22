@@ -82,6 +82,7 @@ public class SkinItem : MonoBehaviour
             _childImage.color = ParametersOfSelectedSkin.skinsColor[selectedColorNumber];
             _childImage.transform.localScale = new Vector2(skinScale, skinScale);
             GlobalEventManager.ChangeSkin(_skinImage);
+            GlobalEventManager.ChangeSkinName(_skinsType);
             return;
         }
         if (IsPurchased)
@@ -174,12 +175,5 @@ public class SkinItem : MonoBehaviour
         PlayerPrefs.SetInt(_skinsType.ToString() + "Equipped", 1);
         PlayerPrefs.SetString("EquippedSkin", _skinsType.ToString());
         PlayerPrefs.Save();
-    }
-
-    public void SelectSkinButtonClick()
-    {
-        EquipButtonClick();
-        BuyButtonOff();
-        SelectButtonOff();
     }
 }

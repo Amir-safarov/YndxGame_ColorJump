@@ -16,13 +16,16 @@ public class ThemeSwitcher : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _mainBestScore;
     [SerializeField] private TextMeshProUGUI _skinMainText;
+    [SerializeField] private Image _skinBG;
     [SerializeField] private TextMeshProUGUI _skinNameText;
     [SerializeField] private TextMeshProUGUI _shopsCoinCountText;
     [SerializeField] private TextMeshProUGUI _restartCoinCountText;
+    [SerializeField] private Image _restartBG;
     [SerializeField] private TextMeshProUGUI _scoreCount;
     [SerializeField] private TextMeshProUGUI _bestScoreText;
     [SerializeField] private TextMeshProUGUI _bestScore;
     [SerializeField] private TextMeshProUGUI _benefidsMainText;
+    [SerializeField] private Image _benefidsBG;
     [SerializeField] private TextMeshProUGUI _doubleStarText;
     [SerializeField] private TextMeshProUGUI _noAdsText;
 
@@ -40,11 +43,20 @@ public class ThemeSwitcher : MonoBehaviour
 
     private void Awake()
     {
-        SwitchThemeIcon();
         if (!PlayerPrefs.HasKey(ThemeNow))
             PlayerPrefs.SetString(ThemeNow, DarkTheme);
         currentTheme = PlayerPrefs.GetString(ThemeNow);
+        CompareSaveAndBoolTheme();
+        SwitchThemeIcon();
         UpdateTheme();
+    }
+
+    private void CompareSaveAndBoolTheme()
+    {
+        if (currentTheme == DarkTheme)
+            _isLightTheme = false;
+        else
+            _isLightTheme |= true;
     }
 
     private void UpdateTheme()
@@ -57,8 +69,8 @@ public class ThemeSwitcher : MonoBehaviour
             _scoreText.color = lightTextThemeStyle;
             _mainBestScore.color = lightTextThemeStyle;
             _skinMainText.color = lightTextThemeStyle;
-/*            _skinNameText.color = lightTextThemeStyle;
-*/            _shopsCoinCountText.color = lightTextThemeStyle;
+            _skinNameText.color = lightTextThemeStyle;
+            _shopsCoinCountText.color = lightTextThemeStyle;
             _restartCoinCountText.color = lightTextThemeStyle;
             _scoreCount.color = lightTextThemeStyle;
             _bestScoreText.color = lightTextThemeStyle;
@@ -66,6 +78,9 @@ public class ThemeSwitcher : MonoBehaviour
             _benefidsMainText.color = lightTextThemeStyle;
             _doubleStarText.color = lightTextThemeStyle;
             _noAdsText.color = lightTextThemeStyle;
+            _benefidsBG.color = lightBackgroundThemeStyle;
+            _restartBG.color = lightBackgroundThemeStyle;
+            _skinBG.color = lightBackgroundThemeStyle;
         }
         else
         {
@@ -75,8 +90,8 @@ public class ThemeSwitcher : MonoBehaviour
             _scoreText.color = darkTextThemeStyle;
             _mainBestScore.color = darkTextThemeStyle;
             _skinMainText.color = darkTextThemeStyle;
-/*            _skinNameText.color = darkTextThemeStyle;
-*/            _shopsCoinCountText.color = darkTextThemeStyle;
+            _skinNameText.color = darkTextThemeStyle;
+            _shopsCoinCountText.color = darkTextThemeStyle;
             _restartCoinCountText.color = darkTextThemeStyle;
             _scoreCount.color = darkTextThemeStyle;
             _bestScoreText.color = darkTextThemeStyle;
@@ -84,7 +99,9 @@ public class ThemeSwitcher : MonoBehaviour
             _benefidsMainText.color = darkTextThemeStyle;
             _doubleStarText.color = darkTextThemeStyle;
             _noAdsText.color = darkTextThemeStyle;
-
+            _benefidsBG.color = darkBackgroundThemeStyle;
+            _restartBG.color = darkBackgroundThemeStyle;
+            _skinBG.color = darkBackgroundThemeStyle;
         }
     }
 
