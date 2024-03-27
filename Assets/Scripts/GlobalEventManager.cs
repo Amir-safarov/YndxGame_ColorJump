@@ -28,7 +28,7 @@ public class GlobalEventManager : MonoBehaviour
     
     public static void ChangeSkinName(PlayerSkin skinName)
     {
-        SkinNameChangeEvent.Invoke(skinName);
+        SkinNameChangeEvent?.Invoke(skinName);
     }
 
     public static void SendToCoinRespawn()
