@@ -17,6 +17,7 @@ public class ThemeSwitcher : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _mainBestScore;
     [SerializeField] private TextMeshProUGUI _skinMainText;
     [SerializeField] private Image _skinBG;
+    [SerializeField] private Image _skinCoinIcon;
     [SerializeField] private TextMeshProUGUI _skinNameText;
     [SerializeField] private TextMeshProUGUI _shopsCoinCountText;
     [SerializeField] private TextMeshProUGUI _restartCoinCountText;
@@ -37,6 +38,8 @@ public class ThemeSwitcher : MonoBehaviour
     private Color lightBackgroundThemeStyle = new Color(0.984f, 0.968f, 0.925f);
     private Color darkTextThemeStyle = new Color(1f, 1f, 1f);
     private Color lightTextThemeStyle = new Color(0.0823f, 0.0823f, 0.0823f);
+    private Color lightThemeGreenColor = new Color(0.4f, 1f, 0f);
+
 
 
     private string currentTheme;
@@ -56,7 +59,7 @@ public class ThemeSwitcher : MonoBehaviour
         if (currentTheme == DarkTheme)
             _isLightTheme = false;
         else
-            _isLightTheme |= true;
+            _isLightTheme = true;
     }
 
     private void UpdateTheme()
@@ -81,6 +84,7 @@ public class ThemeSwitcher : MonoBehaviour
             _benefidsBG.color = lightBackgroundThemeStyle;
             _restartBG.color = lightBackgroundThemeStyle;
             _skinBG.color = lightBackgroundThemeStyle;
+            _skinCoinIcon.color = lightThemeGreenColor;
         }
         else
         {
@@ -102,6 +106,7 @@ public class ThemeSwitcher : MonoBehaviour
             _benefidsBG.color = darkBackgroundThemeStyle;
             _restartBG.color = darkBackgroundThemeStyle;
             _skinBG.color = darkBackgroundThemeStyle;
+            _skinCoinIcon.color = darkTextThemeStyle;
         }
     }
 

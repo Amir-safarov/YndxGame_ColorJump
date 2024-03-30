@@ -35,11 +35,13 @@ public class SkinItem : MonoBehaviour
 
     private void OnEnable()
     {
+        UpdateSkinState();
+    }
+
+    public void UpdateSkinState()
+    {
         LoadSkinPurchaseStatus();
         LoadEquippedSkin();
-
-        BuyButtonOn();
-        SelectButtonOn();
         CheckSkinState();
     }
 
@@ -71,7 +73,7 @@ public class SkinItem : MonoBehaviour
             }
         }
     }
-
+    
     public void CheckSkinState()
     {
         if (IsEquipped && IsPurchased)
@@ -129,12 +131,12 @@ public class SkinItem : MonoBehaviour
     public void BuyButtonClick()
     {
         _coins = new CoinsValue();
-        if (!IsPurchased && _coins.GetCurrentCoinsCount() >= skinCost)
+        if (!IsPurchased && (_coins.GetCurrentCoinsCount() >= skinCost || _skinsType == PlayerSkin.Circle))
         {
             IsPurchased = true;
             PlayerPrefs.SetInt(_skinsType.ToString() + "Purchased", 1);
             PlayerPrefs.Save();
-            _coins.BuyNewSkin(); 
+            _coins.BuyNewSkin();
             Debug.Log($"Куплен скин: {_skinsType}");
             BuyButtonOff();
             if (!IsEquipped)

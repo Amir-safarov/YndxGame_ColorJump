@@ -7,6 +7,17 @@ public class CoinsValue : MonoBehaviour
     private int _receivedCoins;
     private const string CurrentCoins = "CurrentCoins";
 
+    public int Coins
+    {
+        get
+        {
+            if (_coins <= 0)
+                return 0;
+            else return _coins;
+        }
+        set { _coins = value; }
+    }
+
     private void Awake()
     {
         GetSavedCoins();
@@ -15,9 +26,9 @@ public class CoinsValue : MonoBehaviour
 
     private void OnEnable()
     {
+        GetSavedCoins();
         UpdateCurrentCoinsValue();
     }
-
 
     private void OnDisable()
     {
@@ -31,23 +42,25 @@ public class CoinsValue : MonoBehaviour
 
     public void BuyNewSkin()
     {
-        _coins -= 100;
+        Coins -= 100;
         SetCurrentCoins();
     }
 
     public int GetCurrentCoinsCount()
     {
-        FoldCoins();
+        SetCurrentCoins();
         GetSavedCoins();
-        return _coins;
+        return Coins;
     }
 
+    public void ActivateCoinsPutOn()
+    {
+        GlobalEventManager.CoinReceivedEvent.AddListener(AddCoins);
+    }
     public void GetBonus()
     {
         _receivedCoins += 20;
-        SetCurrentCoins();
-        GetSavedCoins();
-        ShowCoinsCount();
+        UpdateCurrentCoinsValue();
     }
 
     public void ResetBonuceShow()
@@ -62,31 +75,29 @@ public class CoinsValue : MonoBehaviour
         ShowCoinsCount();
         _receivedCoins = 0;
     }
+
     private void GetSavedCoins()
     {
-        _coins = PlayerPrefs.GetInt(CurrentCoins);
         if (!PlayerPrefs.HasKey(CurrentCoins))
-            PlayerPrefs.SetInt(CurrentCoins, _coins);
+            PlayerPrefs.SetInt(CurrentCoins, Coins);
+        Coins = PlayerPrefs.GetInt(CurrentCoins);
     }
 
     private void SetCurrentCoins()
     {
-        PlayerPrefs.SetInt(CurrentCoins, _coins + _receivedCoins);
+        PlayerPrefs.SetInt(CurrentCoins, Coins + _receivedCoins);
+        PlayerPrefs.Save();
     }
 
-    public void ActivateCoinsPutOn()
-    {
-        GlobalEventManager.CoinReceivedEvent.AddListener(AddCoins);
-    }
 
     private void ShowCoinsCount()
     {
-        GetComponent<TextMeshProUGUI>().text = (_coins).ToString();
+        GetComponent<TextMeshProUGUI>().text = (Coins).ToString();
     }
 
     private void FoldCoins()
     {
-        _coins += _receivedCoins;
+        Coins += _receivedCoins;
     }
 
     private void AddCoins()

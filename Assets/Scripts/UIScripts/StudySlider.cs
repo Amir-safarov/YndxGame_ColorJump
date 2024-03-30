@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class StudySlider : MonoBehaviour
 {
     [SerializeField] private Transform _slidesParent;
-    [SerializeField] private ShopsController _controller;
+    [SerializeField] private ShopsController _shopController;
+    [SerializeField] private MainMenuControl _menuController;
     [SerializeField] private Button _button;
 
     private int _maxClicks;
@@ -22,10 +23,12 @@ public class StudySlider : MonoBehaviour
     {
         if (_clickCount >= _maxClicks)
         {
-            _controller.ShopOff();
+            _shopController.ShopOff();
+            _menuController.MainMenuOn();
             _clickCount = 1;
             ControlParentsChildren(false);
             ControlParentsChildren(true, 0);
+
             return;
         }
         ControlParentsChildren(true, _clickCount);
@@ -37,6 +40,7 @@ public class StudySlider : MonoBehaviour
         for (int i = 0; i < _slidesParent.childCount; i++)
             _slidesParent.GetChild(i).gameObject.SetActive(switcher);
     }
+
     private void ControlParentsChildren(bool switcher, int childIndex)
     {
         _slidesParent.GetChild(childIndex).gameObject.SetActive(switcher);

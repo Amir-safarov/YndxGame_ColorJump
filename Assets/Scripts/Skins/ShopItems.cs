@@ -21,4 +21,12 @@ public class ShopItems : MonoBehaviour
             skinItem.CheckSkinState();
         }
     }
+    public void CheckAllSkinsState()
+    {
+        foreach (var skinItem in skinItems)
+        {
+            skinItem.IsEquipped = false;
+            skinItem.UpdateSkinState();
+        }
+    }
 }
