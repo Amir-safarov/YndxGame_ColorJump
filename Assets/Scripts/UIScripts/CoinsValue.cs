@@ -42,8 +42,9 @@ public class CoinsValue : MonoBehaviour
 
     public void BuyNewSkin()
     {
+        GetSavedCoins();
         Coins -= 100;
-        SetCurrentCoins();
+        UpdateCurrentCoinsValue();
     }
 
     public int GetCurrentCoinsCount()
@@ -60,6 +61,7 @@ public class CoinsValue : MonoBehaviour
     public void GetBonus()
     {
         _receivedCoins += 20;
+        GlobalVariables.showBonuce = false;
         UpdateCurrentCoinsValue();
     }
 

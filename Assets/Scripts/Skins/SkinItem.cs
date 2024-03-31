@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,6 @@ public class SkinItem : MonoBehaviour
     private const int selectedColorNumber = 1;
     private float skinScale;
     private int skinCost = 100;
-    private CoinsValue _coins = new CoinsValue();
 
     [SerializeField] private Sprite _skinImage;
     [SerializeField] private PlayerSkin _skinsType;
@@ -16,6 +16,7 @@ public class SkinItem : MonoBehaviour
     [SerializeField] private GameObject _buyButton;
     [SerializeField] private GameObject _selectButton;
     [SerializeField] private ShopItems _shopItems;
+    [SerializeField] private CoinsValue _coins;
 
     public bool IsPurchased { get; private set; }
     public bool IsEquipped { get; set; }
@@ -130,7 +131,6 @@ public class SkinItem : MonoBehaviour
 
     public void BuyButtonClick()
     {
-        _coins = new CoinsValue();
         if (!IsPurchased && (_coins.GetCurrentCoinsCount() >= skinCost || _skinsType == PlayerSkin.Circle))
         {
             IsPurchased = true;

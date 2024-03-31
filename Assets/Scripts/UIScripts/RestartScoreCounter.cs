@@ -7,7 +7,7 @@ public class RestartScoreCounter : MonoBehaviour
     public void CounterOn()
     {
         _scoreCounter.SetActive(true);
-        GlobalVariables.gameLaunchCounter++;
+        GlobalVariables.AddGameLauncherCount();
         GlobalVariables.ResetGameCounter();
     }
 
