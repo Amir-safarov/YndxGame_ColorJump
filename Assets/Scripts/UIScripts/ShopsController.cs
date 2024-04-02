@@ -3,7 +3,7 @@ using UnityEngine;
 public class ShopsController : MonoBehaviour
 {
     [SerializeField] private GameObject _shop;
-    private void Awake()
+    private void Start()
     {
         ShopOff();
     }

@@ -154,7 +154,6 @@ public class SkinItem : MonoBehaviour
             IsEquipped = true;
             SaveEquippedSkin();
 
-            Debug.Log($"Надет скин: {_skinsType}");
             SelectButtonOff();
         }
         CheckSkinState();
