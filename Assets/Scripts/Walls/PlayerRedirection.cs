@@ -5,6 +5,7 @@ public class PlayerRedirection : MonoBehaviour
 {
     [SerializeField] private bool _toRightDirection;
     [SerializeField] private UnityEvent<bool> _touchThePlayer;
+    [SerializeField] private AudioSource _bounceEffect;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -22,6 +23,7 @@ public class PlayerRedirection : MonoBehaviour
         }
         else
         {
+            PlaySound();
             collision.gameObject.GetComponent<PlayerMove>()._isToRight = _toRightDirection;
             collision.gameObject.GetComponent<PlayerChangeColor>()._isToRight = _toRightDirection;
             _touchThePlayer.Invoke(_toRightDirection);
@@ -32,5 +34,12 @@ public class PlayerRedirection : MonoBehaviour
             else
                 GlobalEventManager.RightWallChangeColor();
         }
+    }
+
+    private void PlaySound()
+    {
+        if (_bounceEffect == null)
+            return;
+        _bounceEffect.Play();
     }
 }
