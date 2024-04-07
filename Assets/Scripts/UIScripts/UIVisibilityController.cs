@@ -1,18 +1,15 @@
 using UnityEngine;
 
-public class ShopsController : MonoBehaviour
+public class UIVisibilityController : MonoBehaviour
 {
     [SerializeField] private GameObject _shop;
-    private void Start()
-    {
-        ShopOff();
-    }
-    public void ShopOn()
+
+    public void ObjectOn()
     {
         _shop.SetActive(true);
     }
 
-    public void ShopOff()
+    public void ObjectOff()
     {
         _shop.SetActive(false);
     }

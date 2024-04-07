@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MainMenuControl : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private UIVisibilityController mainMenu;
 
     private void Awake()
     {
@@ -11,11 +11,11 @@ public class MainMenuControl : MonoBehaviour
 
     public void MainMenuOff()
     {
-        mainMenu.SetActive(false);
+        mainMenu.ObjectOff();
     }
 
     public void MainMenuOn()
     {
-        mainMenu.SetActive(true);
+        mainMenu.ObjectOn();
     }
 }

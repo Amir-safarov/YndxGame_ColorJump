@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-
+[RequireComponent(typeof(TextMeshProUGUI))]
 public class CoinsValue : MonoBehaviour
 {
     private int _coins;
@@ -20,19 +20,14 @@ public class CoinsValue : MonoBehaviour
 
     private void Awake()
     {
-        GetSavedCoins();
+        UpdateCurrentCoinsValue();
         GlobalEventManager.CoinView.AddListener(UpdateCurrentCoinsValue);
+        GlobalEventManager.ResetReceivedCoins.AddListener(ResetReceivedCoins);
     }
 
     private void OnEnable()
     {
-        GetSavedCoins();
         UpdateCurrentCoinsValue();
-    }
-
-    private void OnDisable()
-    {
-        _receivedCoins = 0;
     }
 
     public int GetReceivedCoins()
@@ -42,9 +37,8 @@ public class CoinsValue : MonoBehaviour
 
     public void BuyNewSkin()
     {
-        GetSavedCoins();
         Coins -= 100;
-        UpdateCurrentCoinsValue();
+        SetCurrentCoins();
     }
 
     public int GetCurrentCoinsCount()
@@ -58,10 +52,10 @@ public class CoinsValue : MonoBehaviour
     {
         GlobalEventManager.CoinReceivedEvent.AddListener(AddCoins);
     }
+
     public void GetBonus()
     {
         _receivedCoins += 20;
-        GlobalVariables.showBonuce = false;
         UpdateCurrentCoinsValue();
     }
 
@@ -72,6 +66,7 @@ public class CoinsValue : MonoBehaviour
 
     private void UpdateCurrentCoinsValue()
     {
+        GetSavedCoins();
         SetCurrentCoins();
         GetSavedCoins();
         ShowCoinsCount();
@@ -97,9 +92,9 @@ public class CoinsValue : MonoBehaviour
         GetComponent<TextMeshProUGUI>().text = (Coins).ToString();
     }
 
-    private void FoldCoins()
+    private void ResetReceivedCoins()
     {
-        Coins += _receivedCoins;
+        _receivedCoins = 0;
     }
 
     private void AddCoins()

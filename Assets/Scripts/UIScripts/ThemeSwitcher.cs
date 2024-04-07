@@ -18,7 +18,6 @@ public class ThemeSwitcher : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _skinMainText;
     [SerializeField] private Image _skinBG;
     [SerializeField] private Image _skinCoinIcon;
-    [SerializeField] private TextMeshProUGUI _skinNameText;
     [SerializeField] private TextMeshProUGUI _shopsCoinCountText;
     [SerializeField] private TextMeshProUGUI _restartCoinCountText;
     [SerializeField] private Image _restartBG;
@@ -72,7 +71,6 @@ public class ThemeSwitcher : MonoBehaviour
             _scoreText.color = lightTextThemeStyle;
             _mainBestScore.color = lightTextThemeStyle;
             _skinMainText.color = lightTextThemeStyle;
-            _skinNameText.color = lightTextThemeStyle;
             _shopsCoinCountText.color = lightTextThemeStyle;
             _restartCoinCountText.color = lightTextThemeStyle;
             _scoreCount.color = lightTextThemeStyle;
@@ -94,7 +92,6 @@ public class ThemeSwitcher : MonoBehaviour
             _scoreText.color = darkTextThemeStyle;
             _mainBestScore.color = darkTextThemeStyle;
             _skinMainText.color = darkTextThemeStyle;
-            _skinNameText.color = darkTextThemeStyle;
             _shopsCoinCountText.color = darkTextThemeStyle;
             _restartCoinCountText.color = darkTextThemeStyle;
             _scoreCount.color = darkTextThemeStyle;

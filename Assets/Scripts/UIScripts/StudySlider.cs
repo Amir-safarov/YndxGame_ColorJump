@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class StudySlider : MonoBehaviour
 {
     [SerializeField] private Transform _slidesParent;
-    [SerializeField] private ShopsController _shopController;
+    [SerializeField] private UIVisibilityController _shopController;
     [SerializeField] private MainMenuControl _menuController;
     [SerializeField] private Button _button;
 
@@ -23,7 +23,7 @@ public class StudySlider : MonoBehaviour
     {
         if (_clickCount >= _maxClicks)
         {
-            _shopController.ShopOff();
+            _shopController.ObjectOff();
             _menuController.MainMenuOn();
             _clickCount = 1;
             ControlParentsChildren(false);

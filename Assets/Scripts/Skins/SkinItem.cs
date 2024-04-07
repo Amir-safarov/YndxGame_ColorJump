@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class SkinItem : MonoBehaviour
     private const int unselectedColorNumber = 0;
     private const int selectedColorNumber = 1;
     private float skinScale;
-    private int skinCost = 100;
+    private int _skinCost = 100;
 
     [SerializeField] private Sprite _skinImage;
     [SerializeField] private PlayerSkin _skinsType;
@@ -17,6 +18,8 @@ public class SkinItem : MonoBehaviour
     [SerializeField] private GameObject _selectButton;
     [SerializeField] private ShopItems _shopItems;
     [SerializeField] private CoinsValue _coins;
+    [SerializeField] private TextMeshProUGUI _skinText;
+
 
     public bool IsPurchased { get; private set; }
     public bool IsEquipped { get; set; }
@@ -34,9 +37,10 @@ public class SkinItem : MonoBehaviour
         _childImage.sprite = _skinImage;
     }
 
-    private void OnEnable()
+    private void Awake()
     {
         UpdateSkinState();
+        ChangeSkin();
     }
 
     public void UpdateSkinState()
@@ -55,8 +59,8 @@ public class SkinItem : MonoBehaviour
     {
         string equippedSkin;
         if (!PlayerPrefs.HasKey("EquippedSkin") && _skinsType == PlayerSkin.Circle)
-        {
-            BuyButtonClick();
+        { 
+            EqupDefaultSkin();
             EquipButtonClick();
         }
         else
@@ -74,7 +78,7 @@ public class SkinItem : MonoBehaviour
             }
         }
     }
-    
+
     public void CheckSkinState()
     {
         if (IsEquipped && IsPurchased)
@@ -129,15 +133,19 @@ public class SkinItem : MonoBehaviour
         _selectButton.SetActive(false);
     }
 
+    private void ChangeSkin()
+    {
+        _skinText.text = _skinsType.ToString();
+    }
+
     public void BuyButtonClick()
     {
-        if (!IsPurchased && (_coins.GetCurrentCoinsCount() >= skinCost || _skinsType == PlayerSkin.Circle))
+        if (!IsPurchased && (_coins.GetCurrentCoinsCount() >= _skinCost || _skinsType == PlayerSkin.Circle))
         {
             IsPurchased = true;
             PlayerPrefs.SetInt(_skinsType.ToString() + "Purchased", 1);
             PlayerPrefs.Save();
             _coins.BuyNewSkin();
-            Debug.Log($"Куплен скин: {_skinsType}");
             BuyButtonOff();
             if (!IsEquipped)
                 SelectButtonOn();
@@ -160,6 +168,19 @@ public class SkinItem : MonoBehaviour
         _shopItems.CheckSkinsState(this);
     }
 
+
+    private void EqupDefaultSkin()
+    {
+        IsPurchased = true;
+        PlayerPrefs.SetInt(_skinsType.ToString() + "Purchased", 1);
+        PlayerPrefs.Save();
+        _coins.BuyNewSkin();
+        Debug.Log($"Куплен скин: {_skinsType}");
+        BuyButtonOff();
+        if (!IsEquipped)
+            SelectButtonOn();
+        GlobalEventManager.UpdateCoinsView();
+    }
     private void UnequipPreviousSkin()
     {
         foreach (PlayerSkin skin in (PlayerSkin[])Enum.GetValues(typeof(PlayerSkin)))

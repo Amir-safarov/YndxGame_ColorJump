@@ -12,6 +12,7 @@ public class GlobalEventManager : MonoBehaviour
     public static UnityEvent CoinRespawnEvent = new UnityEvent();
     public static UnityEvent CoinView = new UnityEvent();
     public static UnityEvent CoinReceivedEvent = new UnityEvent();
+    public static UnityEvent ResetReceivedCoins = new UnityEvent();
     public static Action<Sprite> PlayersSkinChangeEvent;
     public static Action<PlayerSkin> SkinNameChangeEvent;
     public static UnityEvent<int> OnBouncedCountReached = new UnityEvent<int>();
@@ -41,10 +42,16 @@ public class GlobalEventManager : MonoBehaviour
         RestartMenu.Invoke();
     }
 
+    public static void OnResetReceivedCoins()
+    {
+        ResetReceivedCoins.Invoke();
+    }
+
     public static void SendToCoinReceive()
     {
         CoinReceivedEvent.Invoke();
     }
+
     public static void UpdateCoinsView()
     {
         CoinView.Invoke();

@@ -4,7 +4,6 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float _powerY;
     [SerializeField] private float _powerX;
-    [SerializeField] private float fallForce;
 
     private const float _timeScale = 1.4f;
     private const int _rotationSpeed = 130;
