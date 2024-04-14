@@ -18,6 +18,16 @@ public class SoundValueSwitch : MonoBehaviour
         GetCurrentState();
     }
 
+    public void ChangeSoundState()
+    {
+        _soundOn = !_soundOn;
+        if (_soundOn)
+            PlayerPrefs.SetFloat(SoundPlaying, 1);
+        else
+            PlayerPrefs.SetFloat(SoundPlaying, 0);
+        ChechSoundState();
+    }
+
     private void ChechSoundState()
     {
         if (PlayerPrefs.GetFloat(SoundPlaying) == 1)
@@ -45,13 +55,4 @@ public class SoundValueSwitch : MonoBehaviour
             ChechSoundState();
     }
 
-    public void ChangeSoundState()
-    {
-        _soundOn = !_soundOn;
-        if (_soundOn)
-            PlayerPrefs.SetFloat(SoundPlaying, 1);
-        else
-            PlayerPrefs.SetFloat(SoundPlaying, 0);
-        ChechSoundState();
-    }
 }

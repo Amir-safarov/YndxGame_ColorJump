@@ -1,11 +1,22 @@
-using System;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ThemeSwitcher : MonoBehaviour
 {
+    private string currentTheme;
+
+    private const string ThemeNow = "ThemeNow";
+    private const string LightTheme = "LightTheme";
+    private const string DarkTheme = "DarkTheme";
+
+    private Color darkBackgroundThemeStyle = new Color(0.047f, 0.047f, 0.047f);
+    private Color lightBackgroundThemeStyle = new Color(0.984f, 0.968f, 0.925f);
+    private Color darkTextThemeStyle = new Color(1f, 1f, 1f);
+    private Color lightTextThemeStyle = new Color(0.0823f, 0.0823f, 0.0823f);
+    private Color lightThemeGreenColor = new Color(0.4f, 1f, 0f);
+
+
     [SerializeField] private bool _isLightTheme;
     [SerializeField] private Image _buttonsImage;
     [SerializeField] private Sprite _lightThemeIcon;
@@ -29,20 +40,6 @@ public class ThemeSwitcher : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _doubleStarText;
     [SerializeField] private TextMeshProUGUI _noAdsText;
 
-    private const string ThemeNow = "ThemeNow";
-    private const string LightTheme = "LightTheme";
-    private const string DarkTheme = "DarkTheme";
-
-    private Color darkBackgroundThemeStyle = new Color(0.047f, 0.047f, 0.047f);
-    private Color lightBackgroundThemeStyle = new Color(0.984f, 0.968f, 0.925f);
-    private Color darkTextThemeStyle = new Color(1f, 1f, 1f);
-    private Color lightTextThemeStyle = new Color(0.0823f, 0.0823f, 0.0823f);
-    private Color lightThemeGreenColor = new Color(0.4f, 1f, 0f);
-
-
-
-    private string currentTheme;
-
     private void Awake()
     {
         if (!PlayerPrefs.HasKey(ThemeNow))
@@ -51,6 +48,12 @@ public class ThemeSwitcher : MonoBehaviour
         CompareSaveAndBoolTheme();
         SwitchThemeIcon();
         UpdateTheme();
+    }
+
+    public void ThemeSwitch()
+    {
+        _isLightTheme = !_isLightTheme;
+        SwitchThemeIcon();
     }
 
     private void CompareSaveAndBoolTheme()
@@ -105,12 +108,6 @@ public class ThemeSwitcher : MonoBehaviour
             _skinBG.color = darkBackgroundThemeStyle;
             _skinCoinIcon.color = darkTextThemeStyle;
         }
-    }
-
-    public void ThemeSwitch()
-    {
-        _isLightTheme = !_isLightTheme;
-        SwitchThemeIcon(); 
     }
 
     private void SwitchThemeIcon()

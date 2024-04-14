@@ -31,6 +31,15 @@ public class BouncedCount : MonoBehaviour
         GlobalEventManager.OnPlayerBouncedEvent.AddListener(PlayerBounced);
     }
 
+    public int GetHighScore()
+    {
+        return _highScore;
+    }
+
+    public int GetCurrentScore()
+    {
+        return _bounced;
+    }
     private void PlayerBounced()
     {
         _bounced++;
@@ -53,15 +62,6 @@ public class BouncedCount : MonoBehaviour
         }
     }
 
-    public int GetHighScore()
-    {
-        return _highScore;
-    }
-
-    public int GetCurrentScore()
-    {
-        return _bounced;
-    }
 }
 
 

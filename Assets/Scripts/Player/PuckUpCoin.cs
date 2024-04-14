@@ -16,12 +16,22 @@ public class PuckUpCoin : MonoBehaviour
         GlobalEventManager.CoinRespawnEvent.AddListener(Spawn);
         _putOn.ActivateCoinsPutOn();
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == _player.gameObject)
+        {
+            GlobalEventManager.SendToCoinReceive();
+            _needSpawn = true;
+            transform.gameObject.SetActive(false);
+        }
+    }
 
     public void ResetState()
     {
         _needSpawn = true;
         transform.gameObject.SetActive(false);
     }
+
     private void Spawn()
     {
         if (_needSpawn)
@@ -34,13 +44,4 @@ public class PuckUpCoin : MonoBehaviour
         _needSpawn = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject == _player.gameObject)
-        {
-            GlobalEventManager.SendToCoinReceive();
-            _needSpawn = true;
-            transform.gameObject.SetActive(false);
-        }
-    }
 }

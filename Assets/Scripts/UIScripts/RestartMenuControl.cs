@@ -9,6 +9,10 @@ public class RestartMenuControl : MonoBehaviour
     {
         GlobalEventManager.RestartMenu.AddListener(RestartMenuOn);
     }
+    public void RestartMenuOff()
+    {
+        _restartMenu.SetActive(false);
+    }
 
     private void RestartMenuOn()
     {
@@ -17,8 +21,4 @@ public class RestartMenuControl : MonoBehaviour
             _bonuceObj.SetActive(true);
     }
 
-    public void RestartMenuOff()
-    {
-        _restartMenu.SetActive(false);
-    }
 }

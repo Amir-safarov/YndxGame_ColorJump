@@ -8,17 +8,20 @@ public class PlayerDeath : MonoBehaviour
 
     private SpriteRenderer _sp;
 
+    [System.Obsolete]
     private void Start()
     {
         _sp = GetComponent<SpriteRenderer>();
         GlobalEventManager.PlayerDeadEvent.AddListener(ActivateDeath);
     }
 
+    [System.Obsolete]
     private void ActivateDeath()
     {
         StartCoroutine(Death());
     }
 
+    [System.Obsolete]
     private IEnumerator Death()
     {
         _player.BlockMove();
@@ -30,6 +33,7 @@ public class PlayerDeath : MonoBehaviour
         _sp.enabled = true;
     }
 
+    [System.Obsolete]
     private void PlayParticle()
     {
         _playersParticleSystem.textureSheetAnimation.RemoveSprite(0);

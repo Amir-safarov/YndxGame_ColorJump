@@ -50,35 +50,6 @@ public class SkinItem : MonoBehaviour
         CheckSkinState();
     }
 
-    private void LoadSkinPurchaseStatus()
-    {
-        IsPurchased = PlayerPrefs.GetInt(_skinsType.ToString() + "Purchased", 0) == 1;
-    }
-
-    private void LoadEquippedSkin()
-    {
-        string equippedSkin;
-        if (!PlayerPrefs.HasKey("EquippedSkin") && _skinsType == PlayerSkin.Circle)
-        { 
-            EqupDefaultSkin();
-            EquipButtonClick();
-        }
-        else
-        {
-            equippedSkin = PlayerPrefs.GetString("EquippedSkin", "");
-
-            if (!string.IsNullOrEmpty(equippedSkin) && Enum.IsDefined(typeof(PlayerSkin), equippedSkin))
-            {
-                PlayerSkin skin = (PlayerSkin)Enum.Parse(typeof(PlayerSkin), equippedSkin);
-
-                if (skin == _skinsType)
-                    IsEquipped = true;
-                else
-                    IsEquipped = false;
-            }
-        }
-    }
-
     public void CheckSkinState()
     {
         if (IsEquipped && IsPurchased)
@@ -113,29 +84,9 @@ public class SkinItem : MonoBehaviour
         }
     }
 
-    private void BuyButtonOn()
-    {
-        _buyButton.SetActive(true);
-    }
-
-    private void BuyButtonOff()
-    {
-        _buyButton.SetActive(false);
-    }
-
     public void SelectButtonOn()
     {
         _selectButton.SetActive(true);
-    }
-
-    private void SelectButtonOff()
-    {
-        _selectButton.SetActive(false);
-    }
-
-    private void ChangeSkin()
-    {
-        _skinText.text = _skinsType.ToString();
     }
 
     public void BuyButtonClick()
@@ -168,6 +119,54 @@ public class SkinItem : MonoBehaviour
         _shopItems.CheckSkinsState(this);
     }
 
+    private void LoadSkinPurchaseStatus()
+    {
+        IsPurchased = PlayerPrefs.GetInt(_skinsType.ToString() + "Purchased", 0) == 1;
+    }
+
+    private void LoadEquippedSkin()
+    {
+        string equippedSkin;
+        if (!PlayerPrefs.HasKey("EquippedSkin") && _skinsType == PlayerSkin.Circle)
+        { 
+            EqupDefaultSkin();
+            EquipButtonClick();
+        }
+        else
+        {
+            equippedSkin = PlayerPrefs.GetString("EquippedSkin", "");
+
+            if (!string.IsNullOrEmpty(equippedSkin) && Enum.IsDefined(typeof(PlayerSkin), equippedSkin))
+            {
+                PlayerSkin skin = (PlayerSkin)Enum.Parse(typeof(PlayerSkin), equippedSkin);
+
+                if (skin == _skinsType)
+                    IsEquipped = true;
+                else
+                    IsEquipped = false;
+            }
+        }
+    }
+
+    private void BuyButtonOn()
+    {
+        _buyButton.SetActive(true);
+    }
+
+    private void BuyButtonOff()
+    {
+        _buyButton.SetActive(false);
+    }
+
+    private void SelectButtonOff()
+    {
+        _selectButton.SetActive(false);
+    }
+
+    private void ChangeSkin()
+    {
+        _skinText.text = _skinsType.ToString();
+    }
 
     private void EqupDefaultSkin()
     {

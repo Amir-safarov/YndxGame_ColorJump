@@ -13,9 +13,14 @@ public class PlayerMove : MonoBehaviour
     internal bool _isToRight = true;
     private bool _canMove = false;
 
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();    
+    }
+
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
         Time.timeScale = _timeScale;
         Move();
     }
@@ -25,14 +30,6 @@ public class PlayerMove : MonoBehaviour
         PLayerRotate();
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
             Move();
-    }
-
-    private void PLayerRotate()
-    {
-        if (_isToRight)
-            transform.Rotate(0, 0, -_rotationSpeed * Time.deltaTime);
-        else
-            transform.Rotate(0, 0, _rotationSpeed * Time.deltaTime);
     }
 
     public void OpenMove()
@@ -47,6 +44,14 @@ public class PlayerMove : MonoBehaviour
         _rb.Sleep();
         _canMove = false;
         _isToRight = true;
+    }
+
+    private void PLayerRotate()
+    {
+        if (_isToRight)
+            transform.Rotate(0, 0, -_rotationSpeed * Time.deltaTime);
+        else
+            transform.Rotate(0, 0, _rotationSpeed * Time.deltaTime);
     }
 
     private void Move()
