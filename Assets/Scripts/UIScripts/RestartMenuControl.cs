@@ -9,6 +9,7 @@ public class RestartMenuControl : MonoBehaviour
     {
         GlobalEventManager.RestartMenu.AddListener(RestartMenuOn);
     }
+
     public void RestartMenuOff()
     {
         _restartMenu.SetActive(false);

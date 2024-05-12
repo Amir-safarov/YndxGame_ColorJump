@@ -8,16 +8,21 @@ public class PlayerChangeColor : MonoBehaviour
     [SerializeField] private TrailRenderer _playersTrail;
 
     private SpriteRenderer _sp;
+    private int _colorIndex;
+
     internal bool _isToRight = true;
 
-    int _colorIndex;
+    private void Awake()
+    {
+        GlobalEventManager.OnPlayerBouncedEvent.AddListener(GetNewColor);
+    }
 
     private void Start()
     {
         _sp = GetComponent<SpriteRenderer>();
+        _playersTrail.emitting = true;
         StartCoroutine(WaitToChange());
     }
-
 
     public void GetNewColor()
     {

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using YG;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class CoinsValue : MonoBehaviour
 {
@@ -23,12 +24,16 @@ public class CoinsValue : MonoBehaviour
         UpdateCurrentCoinsValue();
         GlobalEventManager.CoinView.AddListener(UpdateCurrentCoinsValue);
         GlobalEventManager.ResetReceivedCoins.AddListener(ResetReceivedCoins);
+        YandexGame.RewardVideoEvent += GetAdReward;
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
-        UpdateCurrentCoinsValue();
+        YandexGame.RewardVideoEvent -= GetAdReward;
     }
+
+    public void ShowRewardAd() =>
+        YandexGame.RewVideoShow(1);
 
     public int GetReceivedCoins()
     {
@@ -64,6 +69,13 @@ public class CoinsValue : MonoBehaviour
         GlobalVariables.showBonuce = false;
     }
 
+    public void GetAdReward(int usellesIndex)
+    {
+        _receivedCoins += 100;
+        print("Подарок есть");
+        UpdateCurrentCoinsValue();
+    }
+
     private void UpdateCurrentCoinsValue()
     {
         GetSavedCoins();
@@ -71,6 +83,7 @@ public class CoinsValue : MonoBehaviour
         GetSavedCoins();
         ShowCoinsCount();
         _receivedCoins = 0;
+        print("Обновление данных монеток");
     }
 
     private void GetSavedCoins()
@@ -84,8 +97,11 @@ public class CoinsValue : MonoBehaviour
     {
         PlayerPrefs.SetInt(CurrentCoins, Coins + _receivedCoins);
         PlayerPrefs.Save();
+        if (!YandexGame.SDKEnabled)
+            return;
+        YandexGame.savesData.money = PlayerPrefs.GetInt(CurrentCoins);
+        YandexGame.SaveProgress();
     }
-
 
     private void ShowCoinsCount()
     {
@@ -99,6 +115,9 @@ public class CoinsValue : MonoBehaviour
 
     private void AddCoins()
     {
-        _receivedCoins++;
+        if (GlobalVariables.doubleStarsPaid)
+            _receivedCoins += 2;
+        else 
+            _receivedCoins += 1;
     }
 }

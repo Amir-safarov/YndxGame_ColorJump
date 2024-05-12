@@ -3,16 +3,21 @@ using UnityEngine;
 
 public class ShowHighScore : MonoBehaviour
 {
-    [SerializeField] private BouncedCount count;
+    [SerializeField] private BouncedCount _count;
     [SerializeField] private bool _isShowingHighScore;
     [SerializeField] private bool _isShowingCurentScore;
+
+    private void Awake()
+    {
+        _count.LoadSavesCloud();
+    }
 
     private void OnEnable()
     {
         TextMeshProUGUI text = GetComponent<TextMeshProUGUI>();
         if (_isShowingHighScore && !_isShowingCurentScore)
-            text.text = count.GetHighScore().ToString();
+            text.text = _count.GetHighScore().ToString();
         else
-            text.text = count.GetCurrentScore().ToString();
+            text.text = _count.GetCurrentScore().ToString();
     }
 }

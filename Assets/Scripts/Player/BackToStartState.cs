@@ -1,4 +1,5 @@
 using UnityEngine;
+using YG;
 
 public class BackToStartState : MonoBehaviour
 {
@@ -11,17 +12,21 @@ public class BackToStartState : MonoBehaviour
     [SerializeField] private UpgradeWalls _leftWallsUpgrade;
     [SerializeField] private PuckUpCoin _coin;
 
+
     public void ReturnState()
     {
         _variables.ResetToDeafoult();
         _rightWallsUpgrade.RebuildingWalls();
+        _rightWallsUpgrade.beforeUp = true;
         _leftWallsUpgrade.RebuildingWalls();
+        _leftWallsUpgrade.beforeUp = true;
         _player.transform.position = new Vector3(-2, 0, 0);
         _rightWalls.FillTheWallList();
         _leftWalls.FillTheWallList();
         _playerChangeColor.ResetDirection();
         _playerChangeColor.GetNewColor();
         _coin.ResetState();
+        YandexGame.FullscreenShow();
     }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShopItems : MonoBehaviour
 {
-    [SerializeField] private List<SkinItem> skinItems;
+    public List<SkinItem> skinItems;
 
     private void Awake()
     {

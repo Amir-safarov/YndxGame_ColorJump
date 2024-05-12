@@ -4,6 +4,11 @@ public class TransferOfSkinShop : MonoBehaviour
 {
     [SerializeField] private RectTransform _shopUI;
 
+    private void Awake()
+    {
+        _shopUI.gameObject.SetActive(true);
+    }
+
     public void ShopOn()
     {
         _shopUI.localPosition = new Vector3 (0, 0, 0);
@@ -12,7 +17,7 @@ public class TransferOfSkinShop : MonoBehaviour
 
     public void ShopOff()
     {
-        _shopUI.localPosition = new Vector3 (0, -405, 0);
+        _shopUI.localPosition = new Vector3 (0, -4050, 0);
         GlobalEventManager.OnResetReceivedCoins();
     }
 }

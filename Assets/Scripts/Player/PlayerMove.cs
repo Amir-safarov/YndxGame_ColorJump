@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField] private TrailRenderer _playersTrail;
     [SerializeField] private float _powerY;
     [SerializeField] private float _powerX;
 
@@ -35,6 +36,7 @@ public class PlayerMove : MonoBehaviour
     public void OpenMove()
     {
         _canMove = true;
+        _playersTrail.emitting = true;
         Move();
     }
 

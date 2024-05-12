@@ -3,6 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class SkinItem : MonoBehaviour
 {
@@ -101,7 +102,17 @@ public class SkinItem : MonoBehaviour
             if (!IsEquipped)
                 SelectButtonOn();
             GlobalEventManager.UpdateCoinsView();
+            GlobalVariables.BoughtSkinsCount++;
+            if (YandexGame.SDKEnabled)
+            {
+                YandexGame.savesData.skinsCount = GlobalVariables.BoughtSkinsCount;
+                YandexGame.SaveProgress();
+            }
+            Debug.Log($"Куплен скин: {_skinsType}");
         }
+        else
+            print("Мало деняг");
+        print("Нажатие  на покупку прошло");
     }
 
     public void EquipButtonClick()
@@ -117,6 +128,7 @@ public class SkinItem : MonoBehaviour
         }
         CheckSkinState();
         _shopItems.CheckSkinsState(this);
+        Debug.Log($"Надет скин: {_skinsType}");
     }
 
     private void LoadSkinPurchaseStatus()
@@ -128,7 +140,7 @@ public class SkinItem : MonoBehaviour
     {
         string equippedSkin;
         if (!PlayerPrefs.HasKey("EquippedSkin") && _skinsType == PlayerSkin.Circle)
-        { 
+        {
             EqupDefaultSkin();
             EquipButtonClick();
         }
@@ -174,12 +186,13 @@ public class SkinItem : MonoBehaviour
         PlayerPrefs.SetInt(_skinsType.ToString() + "Purchased", 1);
         PlayerPrefs.Save();
         _coins.BuyNewSkin();
-        Debug.Log($"Куплен скин: {_skinsType}");
+        Debug.Log($"Надет обычный скин: {_skinsType}");
         BuyButtonOff();
         if (!IsEquipped)
             SelectButtonOn();
         GlobalEventManager.UpdateCoinsView();
     }
+
     private void UnequipPreviousSkin()
     {
         foreach (PlayerSkin skin in (PlayerSkin[])Enum.GetValues(typeof(PlayerSkin)))

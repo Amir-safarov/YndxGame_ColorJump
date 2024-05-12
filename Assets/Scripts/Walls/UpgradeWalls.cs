@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UpgradeWalls : MonoBehaviour
@@ -7,7 +6,7 @@ public class UpgradeWalls : MonoBehaviour
     [SerializeField] private PlayerChangeColor _player;
     [SerializeField] private DeterminationColorsForWalls _determinationColor;
 
-    private bool beforeUp = true;
+    internal bool beforeUp = true;
 
     private void Awake()
     {

@@ -39,6 +39,11 @@ public class ThemeSwitcher : MonoBehaviour
     [SerializeField] private Image _benefidsBG;
     [SerializeField] private TextMeshProUGUI _doubleStarText;
     [SerializeField] private TextMeshProUGUI _noAdsText;
+    [SerializeField] private Image _requestBG;
+    [SerializeField] private TextMeshProUGUI _requestText;
+    [SerializeField] private Image _leaderboardBG;
+    [SerializeField] private Text _leaderboardText;
+    [SerializeField] private Text _leaderboardTitle;
 
     private void Awake()
     {
@@ -86,6 +91,11 @@ public class ThemeSwitcher : MonoBehaviour
             _restartBG.color = lightBackgroundThemeStyle;
             _skinBG.color = lightBackgroundThemeStyle;
             _skinCoinIcon.color = lightThemeGreenColor;
+            _requestBG.color = lightBackgroundThemeStyle;
+            _requestText.color = lightTextThemeStyle;
+            _leaderboardBG.color = lightBackgroundThemeStyle;
+            _leaderboardText.color = lightTextThemeStyle;
+            _leaderboardTitle.color = lightTextThemeStyle;
         }
         else
         {
@@ -107,6 +117,11 @@ public class ThemeSwitcher : MonoBehaviour
             _restartBG.color = darkBackgroundThemeStyle;
             _skinBG.color = darkBackgroundThemeStyle;
             _skinCoinIcon.color = darkTextThemeStyle;
+            _requestBG.color = darkBackgroundThemeStyle;
+            _requestText.color = darkTextThemeStyle;
+            _leaderboardBG.color = darkBackgroundThemeStyle;
+            _leaderboardText.color = darkTextThemeStyle;
+            _leaderboardTitle.color = darkTextThemeStyle;
         }
     }
 

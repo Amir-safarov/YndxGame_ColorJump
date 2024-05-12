@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using YG;
+using System;
+using Unity.VisualScripting;
 
 public class BouncedCount : MonoBehaviour
 {
@@ -10,6 +13,7 @@ public class BouncedCount : MonoBehaviour
     private void OnDisable()
     {
         UpdateText();
+        YandexGame.GetDataEvent -= LoadSavesCloud;
         _bounced = 0;
     }
 
@@ -21,14 +25,20 @@ public class BouncedCount : MonoBehaviour
 
     private void Awake()
     {
-        if(!PlayerPrefs.HasKey(HighScore))
-            PlayerPrefs.SetInt(HighScore,0);
+        if (!PlayerPrefs.HasKey(HighScore))
+            PlayerPrefs.SetInt(HighScore, 0);
+        YandexGame.GetDataEvent += LoadSavesCloud;
+        if (YandexGame.SDKEnabled)
+            LoadSavesCloud();
+        GlobalEventManager.OnPlayerBouncedEvent.AddListener(PlayerBounced);
     }
 
-    private void Start()
+    public void LoadSavesCloud()
     {
+        _highScore = YandexGame.savesData.highScore;
         _highScore = PlayerPrefs.GetInt(HighScore);
-        GlobalEventManager.OnPlayerBouncedEvent.AddListener(PlayerBounced);
+        print(YandexGame.savesData.highScore + " Loaded High Score");
+        PlayerPrefs.SetInt(HighScore, _highScore);
     }
 
     public int GetHighScore()
@@ -48,17 +58,22 @@ public class BouncedCount : MonoBehaviour
         GlobalEventManager.SendToUpgrade(_bounced);
     }
 
-    private void UpdateText()
+    public void UpdateText()
     {
         GetComponent<TextMeshProUGUI>().text = _bounced.ToString();
     }
 
     private void CheckHighScore()
     {
-        if(_bounced > _highScore)
+        if (_bounced > _highScore)
         {
-            _highScore= _bounced;
-            PlayerPrefs.SetInt(HighScore,_highScore);
+            _highScore = _bounced;
+            PlayerPrefs.SetInt(HighScore, _highScore);
+            YandexGame.savesData.highScore = _highScore;
+            if (!YandexGame.SDKEnabled)
+                return;
+            YandexGame.NewLeaderboardScores("ScoreLeaderboard", _highScore);
+            YandexGame.SaveProgress();
         }
     }
 

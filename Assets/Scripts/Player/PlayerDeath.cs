@@ -5,6 +5,7 @@ public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _playersParticleSystem;
     [SerializeField] private PlayerMove _player;
+    [SerializeField] private TrailRenderer _playersTrail;
 
     private SpriteRenderer _sp;
 
@@ -30,6 +31,7 @@ public class PlayerDeath : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         StopParticle();
         GlobalEventManager.ActivateRestarMenu();
+        _playersTrail.emitting = false;
         _sp.enabled = true;
     }
 
