@@ -1,5 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ThemeSwitcher : MonoBehaviour
@@ -11,7 +13,9 @@ public class ThemeSwitcher : MonoBehaviour
     private const string DarkTheme = "DarkTheme";
 
     private Color darkBackgroundThemeStyle = new Color(0.047f, 0.047f, 0.047f);
+    private string darkBackgroundSideColor = "DimGrey";
     private Color lightBackgroundThemeStyle = new Color(0.984f, 0.968f, 0.925f);
+    private string lightBackgroundSideColor = "beige";
     private Color darkTextThemeStyle = new Color(1f, 1f, 1f);
     private Color lightTextThemeStyle = new Color(0.0823f, 0.0823f, 0.0823f);
     private Color lightThemeGreenColor = new Color(0.4f, 1f, 0f);
@@ -55,6 +59,12 @@ public class ThemeSwitcher : MonoBehaviour
         UpdateTheme();
     }
 
+    [Obsolete]
+    private void UpdateSideTheme(string HEXCode)
+    {
+        Application.ExternalCall("SetColor", HEXCode);
+    }
+
     public void ThemeSwitch()
     {
         _isLightTheme = !_isLightTheme;
@@ -96,6 +106,7 @@ public class ThemeSwitcher : MonoBehaviour
             _leaderboardBG.color = lightBackgroundThemeStyle;
             _leaderboardText.color = lightTextThemeStyle;
             _leaderboardTitle.color = lightTextThemeStyle;
+            GlobalEventManager.ChangeSideColor(lightBackgroundSideColor);
         }
         else
         {
@@ -122,6 +133,7 @@ public class ThemeSwitcher : MonoBehaviour
             _leaderboardBG.color = darkBackgroundThemeStyle;
             _leaderboardText.color = darkTextThemeStyle;
             _leaderboardTitle.color = darkTextThemeStyle;
+            GlobalEventManager.ChangeSideColor(darkBackgroundSideColor);
         }
     }
 

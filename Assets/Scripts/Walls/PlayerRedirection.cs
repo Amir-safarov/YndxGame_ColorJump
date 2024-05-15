@@ -9,10 +9,8 @@ public class PlayerRedirection : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
-    private void Awake()
-    {
+    private void Awake() =>
         _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

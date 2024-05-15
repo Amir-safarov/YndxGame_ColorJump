@@ -13,10 +13,8 @@ public class SoundValueSwitch : MonoBehaviour
     private bool _soundOn;
     private const string SoundPlaying = "MusicPlaying";
     
-    private void Awake()
-    {
+    private void Awake() =>
         GetCurrentState();
-    }
 
     public void ChangeSoundState()
     {

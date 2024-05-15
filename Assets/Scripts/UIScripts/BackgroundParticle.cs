@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class BackgroundParticle : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _particleSystem;
     private int _colorsNumber;
     private Colors _colors;
-    [SerializeField] private ParticleSystem _particleSystem;
 
-    private void Start()
-    {
+    private void Start() =>
         StartCoroutine(ChangeParticleColor());
-    }
+
     private IEnumerator ChangeParticleColor()
     {
         _colors = new Colors();

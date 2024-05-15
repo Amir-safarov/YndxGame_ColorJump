@@ -14,7 +14,7 @@ namespace YG
         // Можно удалить этот код, но тогда удалите и демо (папка Example)
         public int money = 0;                       // Можно задать полям значения по умолчанию
         public int highScore = 0;                       
-        public int skinsCount = 0;
+        public int skinsCount = 1;
         public bool doubleStartsBought;
         public string newPlayerName = "Hello!";
         public bool[] openLevels = new bool[3];

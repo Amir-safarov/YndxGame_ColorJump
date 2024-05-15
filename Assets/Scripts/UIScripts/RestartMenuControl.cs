@@ -5,15 +5,11 @@ public class RestartMenuControl : MonoBehaviour
     [SerializeField] private GameObject _restartMenu;
     [SerializeField] private GameObject _bonuceObj;
 
-    private void Start()
-    {
+    private void Start() =>
         GlobalEventManager.RestartMenu.AddListener(RestartMenuOn);
-    }
 
-    public void RestartMenuOff()
-    {
+    public void RestartMenuOff() =>
         _restartMenu.SetActive(false);
-    }
 
     private void RestartMenuOn()
     {

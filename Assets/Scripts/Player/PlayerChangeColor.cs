@@ -12,10 +12,8 @@ public class PlayerChangeColor : MonoBehaviour
 
     internal bool _isToRight = true;
 
-    private void Awake()
-    {
+    private void Awake() =>
         GlobalEventManager.OnPlayerBouncedEvent.AddListener(GetNewColor);
-    }
 
     private void Start()
     {
@@ -40,10 +38,8 @@ public class PlayerChangeColor : MonoBehaviour
         }
     }
 
-    public void ResetDirection()
-    {
+    public void ResetDirection() =>
         _isToRight = true;
-    }
 
     private void ChangeTrailColor()
     {

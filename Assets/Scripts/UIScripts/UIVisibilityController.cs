@@ -33,8 +33,6 @@ public class UIVisibilityController : MonoBehaviour
         }
     }
 
-    public void ObjectOff()
-    {
+    public void ObjectOff() =>
         _object.SetActive(false);
-    }
 }

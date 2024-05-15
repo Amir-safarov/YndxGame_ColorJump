@@ -8,10 +8,7 @@ public class BenefidsPayment : MonoBehaviour
     private void Awake()
     {
         if (YandexGame.SDKEnabled)
-        {
             YandexGame.LoadProgress();
-            print("HERE TO");
-        }
     }
 
     private void OnEnable()
@@ -29,14 +26,12 @@ public class BenefidsPayment : MonoBehaviour
         YandexGame.PurchaseSuccessEvent -= GetBenefids;
     }
 
-    private void Start()
-    {
+    private void Start() =>
         _doubleStarsObj.SetActive(!YandexGame.savesData.doubleStartsBought);
-    }
 
     private void GetBenefids(string key)
     {
-        if(!YandexGame.SDKEnabled)
+        if (!YandexGame.SDKEnabled)
             return;
         switch (key)
         {

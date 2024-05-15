@@ -1,14 +1,13 @@
 using UnityEngine;
 using TMPro;
 using YG;
-using System;
-using Unity.VisualScripting;
 
 public class BouncedCount : MonoBehaviour
 {
-    private const string HighScore = "HighScore";
     private int _bounced;
     private int _highScore;
+
+    private const string HighScore = "HighScore";
 
     private void OnDisable()
     {
@@ -25,8 +24,6 @@ public class BouncedCount : MonoBehaviour
 
     private void Awake()
     {
-        if (!PlayerPrefs.HasKey(HighScore))
-            PlayerPrefs.SetInt(HighScore, 0);
         YandexGame.GetDataEvent += LoadSavesCloud;
         if (YandexGame.SDKEnabled)
             LoadSavesCloud();
@@ -35,13 +32,20 @@ public class BouncedCount : MonoBehaviour
 
     public void LoadSavesCloud()
     {
-        _highScore = YandexGame.savesData.highScore;
-        _highScore = PlayerPrefs.GetInt(HighScore);
+        if (!PlayerPrefs.HasKey(HighScore))
+            PlayerPrefs.SetInt(HighScore, 0);
+        if (YandexGame.savesData.highScore != 0)
+        {
+            _highScore = YandexGame.savesData.highScore;
+            PlayerPrefs.SetInt(HighScore, _highScore);
+        }
+        else
+            _highScore = PlayerPrefs.GetInt(HighScore);
+
         print(YandexGame.savesData.highScore + " Loaded High Score");
-        PlayerPrefs.SetInt(HighScore, _highScore);
     }
 
-    public int GetHighScore()
+    public int GetHighScore() 
     {
         return _highScore;
     }
@@ -50,6 +54,9 @@ public class BouncedCount : MonoBehaviour
     {
         return _bounced;
     }
+    public void UpdateText() =>
+        GetComponent<TextMeshProUGUI>().text = _bounced.ToString();
+
     private void PlayerBounced()
     {
         _bounced++;
@@ -58,10 +65,6 @@ public class BouncedCount : MonoBehaviour
         GlobalEventManager.SendToUpgrade(_bounced);
     }
 
-    public void UpdateText()
-    {
-        GetComponent<TextMeshProUGUI>().text = _bounced.ToString();
-    }
 
     private void CheckHighScore()
     {
@@ -76,7 +79,6 @@ public class BouncedCount : MonoBehaviour
             YandexGame.SaveProgress();
         }
     }
-
 }
 
 
