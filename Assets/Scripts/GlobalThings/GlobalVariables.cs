@@ -26,7 +26,7 @@ public class GlobalVariables : MonoBehaviour
     private static int _boughtSkinsCount;
     private static int _skinsCount;
     private static int gameLaunchCounter;
-    private static int _launchCountToBonus = 1;
+    private static int _launchCountToBonus = 5;
 
     private const string LaunchCount = "LaunchCount";
     private const string StarsBonus = "StarsBonus";
