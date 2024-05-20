@@ -19,8 +19,8 @@ public class BenefidsPayment : MonoBehaviour
         if (YandexGame.SDKEnabled)
             YandexGame.LoadProgress();
         YandexGame.PurchaseSuccessEvent += GetBenefids;
-        _doubleStarsObj.SetActive(!YandexGame.savesData.doubleStartsBought);
-    }
+/*        _doubleStarsObj.SetActive(!YandexGame.savesData.doubleStartsBought);
+*/    }
 
     private void OnDisable()
     {

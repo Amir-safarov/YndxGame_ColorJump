@@ -9,7 +9,7 @@ public class UIVisibilityController : MonoBehaviour
 
     [SerializeField] private bool _isCheckingOnAuth;
     [SerializeField] private GameObject _object;
-    [SerializeField] private YandexGame _yg;
+    [SerializeField] private HighlightObject _highlightObj;
 
     private const string PlayerAuthorized = "PlayerAuthorized";
 
@@ -29,7 +29,7 @@ public class UIVisibilityController : MonoBehaviour
             if (YandexGame.auth && YandexGame.SDKEnabled)
                 _object.SetActive(true);
             else
-                _yg._OpenAuthDialog();
+                _highlightObj.StartHighlight();
         }
     }
 
