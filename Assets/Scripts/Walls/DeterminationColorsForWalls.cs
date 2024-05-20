@@ -16,8 +16,10 @@ public class DeterminationColorsForWalls : MonoBehaviour
         GlobalEventManager.ToRightWallChangeColorEvent.AddListener(ForRight);
     }
 
-    private void Start() =>
+    private void Start()
+    {
         FillTheWallList();
+    }
 
     public void FillTheWallList()
     {

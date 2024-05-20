@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a7e7100403b04494095a760e4c0e0553
+guid: 44815ced89ee2604b841ca3d4ee31685
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FirstSlide_0
+      name: AuthBTN_0
       rect:
         serializedVersion: 2
-        x: 246
-        y: 41
-        width: 529
-        height: 944
+        x: 8
+        y: 165
+        width: 492
+        height: 195
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fdccd15dc6dbc645a88f808cb47548e
-      internalID: -1388847703
+      spriteID: 9e7ffdc1df2404a419a4e7cf5b80fafe
+      internalID: -466942352
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FirstSlide_0: -1388847703
+      AuthBTN_0: -466942352
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

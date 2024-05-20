@@ -8,8 +8,10 @@ public class UpgradeWalls : MonoBehaviour
 
     internal bool beforeUp = true;
 
-    private void Awake() =>
+    private void Awake()
+    {
         GlobalEventManager.OnBouncedCountReached.AddListener(ReviewWalls);
+    }
 
     public void ReviewWalls(int bounced)
     {
@@ -50,6 +52,8 @@ public class UpgradeWalls : MonoBehaviour
     private void DisableTransformsChild()
     {
         for (int i = 0; i < transform.childCount; i++)
+        {
             transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 }

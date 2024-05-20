@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using YG;
-
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class CoinsValue : MonoBehaviour
 {
@@ -28,11 +27,11 @@ public class CoinsValue : MonoBehaviour
         YandexGame.RewardVideoEvent += GetAdReward;
     }
 
-    private void OnEnable() =>
-        UpdateCurrentCoinsValue();
-
-    private void OnDisable() =>
+    private void OnDisable()
+    {
         YandexGame.RewardVideoEvent -= GetAdReward;
+    }
+
     public void ShowRewardAd() =>
         YandexGame.RewVideoShow(1);
 
@@ -54,8 +53,10 @@ public class CoinsValue : MonoBehaviour
         return Coins;
     }
 
-    public void ActivateCoinsPutOn() =>
+    public void ActivateCoinsPutOn()
+    {
         GlobalEventManager.CoinReceivedEvent.AddListener(AddCoins);
+    }
 
     public void GetBonus()
     {
@@ -63,8 +64,10 @@ public class CoinsValue : MonoBehaviour
         UpdateCurrentCoinsValue();
     }
 
-    public void ResetBonuceShow() =>
+    public void ResetBonuceShow()
+    {
         GlobalVariables.showBonuce = false;
+    }
 
     public void GetAdReward(int usellesIndex)
     {
@@ -100,17 +103,21 @@ public class CoinsValue : MonoBehaviour
         YandexGame.SaveProgress();
     }
 
-    private void ShowCoinsCount() =>
+    private void ShowCoinsCount()
+    {
         GetComponent<TextMeshProUGUI>().text = (Coins).ToString();
+    }
 
-    private void ResetReceivedCoins() =>
+    private void ResetReceivedCoins()
+    {
         _receivedCoins = 0;
+    }
 
     private void AddCoins()
     {
         if (GlobalVariables.doubleStarsPaid)
             _receivedCoins += 2;
-        else
+        else 
             _receivedCoins += 1;
     }
 }

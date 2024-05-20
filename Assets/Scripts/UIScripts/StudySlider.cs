@@ -41,6 +41,8 @@ public class StudySlider : MonoBehaviour
             _slidesParent.GetChild(i).gameObject.SetActive(switcher);
     }
 
-    private void ControlParentsChildren(bool switcher, int childIndex) =>
+    private void ControlParentsChildren(bool switcher, int childIndex)
+    {
         _slidesParent.GetChild(childIndex).gameObject.SetActive(switcher);
+    }
 }

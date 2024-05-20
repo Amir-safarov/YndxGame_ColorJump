@@ -4,12 +4,18 @@ public class MainMenuControl : MonoBehaviour
 {
     [SerializeField] private UIVisibilityController mainMenu;
 
-    private void Awake() =>
+    private void Awake()
+    {
         MainMenuOn();
+    }
 
-    public void MainMenuOff() =>
+    public void MainMenuOff()
+    {
         mainMenu.ObjectOff();
+    }
 
-    public void MainMenuOn() =>
+    public void MainMenuOn()
+    {
         mainMenu.ObjectOn();
+    }
 }

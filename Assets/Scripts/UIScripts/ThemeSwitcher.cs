@@ -1,7 +1,5 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ThemeSwitcher : MonoBehaviour
@@ -11,11 +9,11 @@ public class ThemeSwitcher : MonoBehaviour
     private const string ThemeNow = "ThemeNow";
     private const string LightTheme = "LightTheme";
     private const string DarkTheme = "DarkTheme";
+    private const string darkBackgroundSideColor = "DimGrey";
+    private const string lightBackgroundSideColor = "beige";
 
     private Color darkBackgroundThemeStyle = new Color(0.047f, 0.047f, 0.047f);
-    private string darkBackgroundSideColor = "DimGrey";
     private Color lightBackgroundThemeStyle = new Color(0.984f, 0.968f, 0.925f);
-    private string lightBackgroundSideColor = "beige";
     private Color darkTextThemeStyle = new Color(1f, 1f, 1f);
     private Color lightTextThemeStyle = new Color(0.0823f, 0.0823f, 0.0823f);
     private Color lightThemeGreenColor = new Color(0.4f, 1f, 0f);
@@ -43,11 +41,11 @@ public class ThemeSwitcher : MonoBehaviour
     [SerializeField] private Image _benefidsBG;
     [SerializeField] private TextMeshProUGUI _doubleStarText;
     [SerializeField] private TextMeshProUGUI _noAdsText;
-    [SerializeField] private Image _requestBG;
-    [SerializeField] private TextMeshProUGUI _requestText;
+    //[SerializeField] private Image _requestBG;
+    //[SerializeField] private TextMeshProUGUI _requestText;
     [SerializeField] private Image _leaderboardBG;
     [SerializeField] private Text _leaderboardText;
-    [SerializeField] private Text _leaderboardTitle;
+    [SerializeField] private TextMeshProUGUI _leaderboardTitle;
 
     private void Awake()
     {
@@ -57,12 +55,6 @@ public class ThemeSwitcher : MonoBehaviour
         CompareSaveAndBoolTheme();
         SwitchThemeIcon();
         UpdateTheme();
-    }
-
-    [Obsolete]
-    private void UpdateSideTheme(string HEXCode)
-    {
-        Application.ExternalCall("SetColor", HEXCode);
     }
 
     public void ThemeSwitch()
@@ -101,8 +93,8 @@ public class ThemeSwitcher : MonoBehaviour
             _restartBG.color = lightBackgroundThemeStyle;
             _skinBG.color = lightBackgroundThemeStyle;
             _skinCoinIcon.color = lightThemeGreenColor;
-            _requestBG.color = lightBackgroundThemeStyle;
-            _requestText.color = lightTextThemeStyle;
+            //_requestBG.color = lightBackgroundThemeStyle;
+            //_requestText.color = lightTextThemeStyle;
             _leaderboardBG.color = lightBackgroundThemeStyle;
             _leaderboardText.color = lightTextThemeStyle;
             _leaderboardTitle.color = lightTextThemeStyle;
@@ -128,8 +120,8 @@ public class ThemeSwitcher : MonoBehaviour
             _restartBG.color = darkBackgroundThemeStyle;
             _skinBG.color = darkBackgroundThemeStyle;
             _skinCoinIcon.color = darkTextThemeStyle;
-            _requestBG.color = darkBackgroundThemeStyle;
-            _requestText.color = darkTextThemeStyle;
+            //_requestBG.color = darkBackgroundThemeStyle;
+            //_requestText.color = darkTextThemeStyle;
             _leaderboardBG.color = darkBackgroundThemeStyle;
             _leaderboardText.color = darkTextThemeStyle;
             _leaderboardTitle.color = darkTextThemeStyle;

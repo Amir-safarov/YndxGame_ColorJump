@@ -43,4 +43,5 @@ public class PuckUpCoin : MonoBehaviour
         }
         _needSpawn = false;
     }
+
 }

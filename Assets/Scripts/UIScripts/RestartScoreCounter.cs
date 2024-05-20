@@ -11,6 +11,8 @@ public class RestartScoreCounter : MonoBehaviour
         GlobalVariables.ResetGameCounter();
     }
 
-    public void CounterOff()  =>
+    public void CounterOff() 
+    {
         _scoreCounter.SetActive(false);
+    }    
 }

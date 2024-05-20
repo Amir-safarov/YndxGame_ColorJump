@@ -44,6 +44,8 @@ public class PlayerDeath : MonoBehaviour
         _playersParticleSystem.Play();
     }
 
-    private void StopParticle() =>
+    private void StopParticle()
+    {
         _playersParticleSystem.Stop();
+    }
 }

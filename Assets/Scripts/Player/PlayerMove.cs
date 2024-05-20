@@ -15,8 +15,10 @@ public class PlayerMove : MonoBehaviour
     private bool _canMove = false;
 
 
-    private void Awake() =>
+    private void Awake()
+    {
         _rb = GetComponent<Rigidbody2D>();    
+    }
 
     private void Start()
     {

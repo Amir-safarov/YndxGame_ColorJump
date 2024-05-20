@@ -8,8 +8,10 @@ public class ReceivedNowCoins : MonoBehaviour
     private int _receivedCoins;
     private TextMeshProUGUI _receivedCoinText;
 
-    private void Awake() =>
+    private void Awake()
+    {
         _receivedCoinText = GetComponent<TextMeshProUGUI>();
+    }
 
     private void OnEnable()
     {

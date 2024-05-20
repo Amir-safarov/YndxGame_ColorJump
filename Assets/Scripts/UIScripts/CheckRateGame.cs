@@ -7,6 +7,7 @@ public class CheckRateGame : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void RateGame();
 
+
     [SerializeField] private GameObject _rateGameButton;
     [SerializeField] private YandexGame _yg;
 
@@ -16,8 +17,10 @@ public class CheckRateGame : MonoBehaviour
         YandexGame.ReviewSentEvent += ActiveReview;
     }
 
-    private void OnDisable() =>
+    private void OnDisable()
+    {
         YandexGame.ReviewSentEvent -= ActiveReview;
+    }
 
     private void ActiveReview(bool active)
     {

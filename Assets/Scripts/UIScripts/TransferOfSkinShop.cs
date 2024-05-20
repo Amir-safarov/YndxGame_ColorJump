@@ -4,8 +4,10 @@ public class TransferOfSkinShop : MonoBehaviour
 {
     [SerializeField] private RectTransform _shopUI;
 
-    private void Awake() =>
+    private void Awake()
+    {
         _shopUI.gameObject.SetActive(true);
+    }
 
     public void ShopOn()
     {

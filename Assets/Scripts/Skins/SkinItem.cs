@@ -10,7 +10,7 @@ public class SkinItem : MonoBehaviour
     private const int unselectedColorNumber = 0;
     private const int selectedColorNumber = 1;
     private float skinScale;
-    private readonly int _skinCost = 100;
+    private int _skinCost = 100;
 
     [SerializeField] private Sprite _skinImage;
     [SerializeField] private PlayerSkin _skinsType;
@@ -41,8 +41,8 @@ public class SkinItem : MonoBehaviour
     private void Awake()
     {
         UpdateSkinState();
-        ChangeSkin();
-    }
+/*        ChangeSkin();
+*/    }
 
     public void UpdateSkinState()
     {
@@ -85,8 +85,10 @@ public class SkinItem : MonoBehaviour
         }
     }
 
-    public void SelectButtonOn() =>
+    public void SelectButtonOn()
+    {
         _selectButton.SetActive(true);
+    }
 
     public void BuyButtonClick()
     {
@@ -105,7 +107,6 @@ public class SkinItem : MonoBehaviour
             {
                 YandexGame.savesData.skinsCount = GlobalVariables.BoughtSkinsCount;
                 YandexGame.SaveProgress();
-                print($"Данные скинов сохранены {GlobalVariables.BoughtSkinsCount}");
             }
             Debug.Log($"Куплен скин: {_skinsType}");
         }
@@ -130,8 +131,10 @@ public class SkinItem : MonoBehaviour
         Debug.Log($"Надет скин: {_skinsType}");
     }
 
-    private void LoadSkinPurchaseStatus() =>
+    private void LoadSkinPurchaseStatus()
+    {
         IsPurchased = PlayerPrefs.GetInt(_skinsType.ToString() + "Purchased", 0) == 1;
+    }
 
     private void LoadEquippedSkin()
     {
@@ -157,17 +160,25 @@ public class SkinItem : MonoBehaviour
         }
     }
 
-    private void BuyButtonOn() =>
+    private void BuyButtonOn()
+    {
         _buyButton.SetActive(true);
+    }
 
-    private void BuyButtonOff() =>
+    private void BuyButtonOff()
+    {
         _buyButton.SetActive(false);
+    }
 
-    private void SelectButtonOff() =>
+    private void SelectButtonOff()
+    {
         _selectButton.SetActive(false);
+    }
 
-    private void ChangeSkin() =>
+/*    private void ChangeSkin()
+    {
         _skinText.text = _skinsType.ToString();
+    }*/
 
     private void EqupDefaultSkin()
     {
@@ -187,7 +198,9 @@ public class SkinItem : MonoBehaviour
         foreach (PlayerSkin skin in (PlayerSkin[])Enum.GetValues(typeof(PlayerSkin)))
         {
             if (PlayerPrefs.GetInt(skin.ToString() + "Purchased", 0) == 1)
+            {
                 PlayerPrefs.SetInt(skin.ToString() + "Equipped", 0);
+            }
         }
     }
 
