@@ -76,7 +76,7 @@ public class CoinsValue : MonoBehaviour
         UpdateCurrentCoinsValue();
     }
 
-    private void UpdateCurrentCoinsValue()
+    internal void UpdateCurrentCoinsValue()
     {
         GetSavedCoins();
         SetCurrentCoins();

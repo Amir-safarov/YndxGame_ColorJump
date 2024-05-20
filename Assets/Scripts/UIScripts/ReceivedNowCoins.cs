@@ -20,5 +20,6 @@ public class ReceivedNowCoins : MonoBehaviour
             _receivedCoinText.text = $"";
         else
             _receivedCoinText.text = $"+{_coins.GetReceivedCoins()}";
+        _coins.UpdateCurrentCoinsValue();
     }
 }

@@ -11,6 +11,11 @@ public class CheckRateGame : MonoBehaviour
     [SerializeField] private GameObject _rateGameButton;
     [SerializeField] private HighlightObject _highlightObj;
 
+    private void Awake()
+    {
+        _rateGameButton.SetActive(YandexGame.EnvironmentData.reviewCanShow);
+    }
+
     private void OnEnable()
     {
         YandexGame.ReviewSentEvent += ActiveReview;
@@ -23,11 +28,19 @@ public class CheckRateGame : MonoBehaviour
 
     private void ActiveReview(bool active)
     {
-        if (active)
-            return;
         if (!YandexGame.SDKEnabled)
             return;
-        _rateGameButton.SetActive(YandexGame.EnvironmentData.reviewCanShow);
+        if (active)
+        {
+            print("RATEEEEEED");
+            _rateGameButton.SetActive(YandexGame.EnvironmentData.reviewCanShow);
+        }
+        else
+        {
+            print("NOOOOOOOOOOOOO RATEEEEEED");
+            _rateGameButton.SetActive(YandexGame.EnvironmentData.reviewCanShow);
+        }
+        return;
     }
 
     public void InvokeRateGame()
@@ -37,5 +50,10 @@ public class CheckRateGame : MonoBehaviour
             YandexGame.ReviewShow(true);
         else
             _highlightObj.StartHighlight();
+    }
+
+    public void RateOFF()
+    {
+        _rateGameButton.SetActive(YandexGame.EnvironmentData.reviewCanShow);
     }
 }
