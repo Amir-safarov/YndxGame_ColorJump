@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scopes: 1
   playerPhotoSize: 0
-  leaderboardEnable: 1
+  leaderboardEnable: 0
   saveCloud: 1
-  flush: 1
-  localSaveSync: 0
-  saveCloudInterval: 0
+  flush: 0
+  localSaveSync: 1
+  saveCloudInterval: 5
   metricaEnable: 0
   metricaCounterID: 0
   AdWhenLoadingScene: 1
@@ -62,8 +62,7 @@ MonoBehaviour:
     de: 0
     hi: 0
   fonts:
-    defaultFont:
-    - {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    defaultFont: []
     ru: []
     en: []
     tr: []
@@ -119,7 +118,7 @@ MonoBehaviour:
     it: 
     de: 
     hi: 
-  debug: 0
+  debug: 1
   archivingBuild: 1
   bakcgroundImage: 2
   pixelRatioEnable: 0

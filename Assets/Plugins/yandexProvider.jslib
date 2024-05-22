@@ -9,59 +9,7 @@ mergeInto(LibraryManager.library,
 	{
 		OpenAuthDialog(UTF8ToString(playerPhotoSize), scopes);
 	},
-
-  Authorization: function() {
-  return initPlayer()
-    .then(player => {
-      if (player.getMode() === 'lite') {
-        // Игрок не авторизован
-        console.log('Player not auth from js');
-        return ysdk.auth.openAuthDialog()
-          .then(() => {
-            // Игрок успешно авторизован
-            console.log('Player auth from js');
-          })
-          .catch(() => {
-            // Игрок не авторизован
-            console.log('Player not auth from js');
-          });
-      }
-    })
-    .catch(err => {
-      // Ошибка при инициализации объекта Player
-      console.log('Player has inizialize problem from js');
-    });
-},
-
-	RateGame: function() {
-  ysdk.feedback.canReview()
-    .then(({ value, reason }) => {
-      if (value) {
-        ysdk.feedback.requestReview()
-          .then(({ feedbackSent }) => {
-            console.log(feedbackSent);
-            myGameInstance.SendMessage('RateGameController', 'CheckRateFromJS', feedbackSent);
-          });
-      } else {
-        console.log(reason);
-      }
-    });
-  console.log('RateGame complited');
-	},
-
-	CheckAuth: function() {
-  	myGameInstance.SendMessage('YandexHandler', 'CheckAuthState', player.getMode());
-	},
-
-	Hello: function() {
-  	window.alert('Hello');
-	},
-
-	GetPlayerData: function() {
-  	console.log(player.getName());
-  	myGameInstance.SendMessage('YandexHandler', 'SetUsernameHandler', player.getName());
-	},
-
+	
 	SaveYG: function (jsonData, flush)
 	{
 		SaveCloud(UTF8ToString(jsonData), flush);

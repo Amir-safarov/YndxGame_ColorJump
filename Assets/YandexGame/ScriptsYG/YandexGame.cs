@@ -340,8 +340,7 @@ namespace YG
             LoadEditor();
 #endif
         }
-        public static void LoadProgress() {
-            Instance._LoadProgress(); }
+        public static void LoadProgress() => Instance._LoadProgress();
 
         #endregion Player Data        
 

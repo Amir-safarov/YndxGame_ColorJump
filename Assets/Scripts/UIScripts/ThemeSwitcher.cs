@@ -41,11 +41,10 @@ public class ThemeSwitcher : MonoBehaviour
     [SerializeField] private Image _benefidsBG;
     [SerializeField] private TextMeshProUGUI _doubleStarText;
     [SerializeField] private TextMeshProUGUI _noAdsText;
-    //[SerializeField] private Image _requestBG;
-    //[SerializeField] private TextMeshProUGUI _requestText;
     [SerializeField] private Image _leaderboardBG;
     [SerializeField] private Text _leaderboardText;
     [SerializeField] private TextMeshProUGUI _leaderboardTitle;
+    [SerializeField] private Image _authUIBG;
 
     private void Awake()
     {
@@ -93,9 +92,8 @@ public class ThemeSwitcher : MonoBehaviour
             _restartBG.color = lightBackgroundThemeStyle;
             _skinBG.color = lightBackgroundThemeStyle;
             _skinCoinIcon.color = lightThemeGreenColor;
-            //_requestBG.color = lightBackgroundThemeStyle;
-            //_requestText.color = lightTextThemeStyle;
             _leaderboardBG.color = lightBackgroundThemeStyle;
+            _authUIBG.color = lightBackgroundThemeStyle;
             _leaderboardText.color = lightTextThemeStyle;
             _leaderboardTitle.color = lightTextThemeStyle;
             GlobalEventManager.ChangeSideColor(lightBackgroundSideColor);
@@ -120,9 +118,8 @@ public class ThemeSwitcher : MonoBehaviour
             _restartBG.color = darkBackgroundThemeStyle;
             _skinBG.color = darkBackgroundThemeStyle;
             _skinCoinIcon.color = darkTextThemeStyle;
-            //_requestBG.color = darkBackgroundThemeStyle;
-            //_requestText.color = darkTextThemeStyle;
             _leaderboardBG.color = darkBackgroundThemeStyle;
+            _authUIBG.color = darkBackgroundThemeStyle;
             _leaderboardText.color = darkTextThemeStyle;
             _leaderboardTitle.color = darkTextThemeStyle;
             GlobalEventManager.ChangeSideColor(darkBackgroundSideColor);

@@ -7,7 +7,7 @@ namespace YG
 {
     public class ImageLoadYG : MonoBehaviour
     {
-        public bool startLoad = false;
+        public bool startLoad = true;
         public RawImage rawImage;
         public Image spriteImage;
         public string urlImage;

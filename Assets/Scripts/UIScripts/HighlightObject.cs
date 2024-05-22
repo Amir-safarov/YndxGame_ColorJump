@@ -14,6 +14,11 @@ public class HighlightObject : MonoBehaviour
         StartCoroutine(PulseColor());
     }
 
+    private void OnDisable()
+    {
+        StopCoroutine(PulseColor());
+    }
+
     private IEnumerator PulseColor()
     {
         yield return StartCoroutine(ChangeColor(_firstColor, _secondColor));
