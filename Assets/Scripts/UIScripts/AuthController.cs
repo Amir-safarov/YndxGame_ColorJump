@@ -7,12 +7,6 @@ public class AuthController : MonoBehaviour
     [SerializeField] private GameObject _firstAuthBtn;
     [SerializeField] private GameObject _secondAuthBtn;
 
-    private void Awake() =>
-        CheckAuthState();
-
-    private void OnEnable() =>
-        CheckAuthState();
-
     public void AuthOn()
     {
         if (!YandexGame.SDKEnabled)
