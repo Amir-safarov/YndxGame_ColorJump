@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using YG;
 
 public class ShowHighScore : MonoBehaviour
 {
@@ -7,12 +8,21 @@ public class ShowHighScore : MonoBehaviour
     [SerializeField] private bool _isShowingHighScore;
     [SerializeField] private bool _isShowingCurentScore;
 
+
     private void Awake()
     {
-        _count.LoadSavesCloud();
+        GlobalEventManager.ShowScoreAfterInitEvent.AddListener(ShowScore);
+    }
+    private void Start()
+    {
+        ShowScore();
+    }
+    private void OnEnable()
+    {
+        ShowScore();
     }
 
-    private void OnEnable()
+    private void ShowScore()
     {
         TextMeshProUGUI text = GetComponent<TextMeshProUGUI>();
         if (_isShowingHighScore && !_isShowingCurentScore)

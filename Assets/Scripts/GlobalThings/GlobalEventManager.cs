@@ -5,6 +5,8 @@ using UnityEngine.Events;
 public class GlobalEventManager : MonoBehaviour
 {
     public static UnityEvent OnPlayerBouncedEvent = new UnityEvent();
+    public static UnityEvent ShowScoreAfterInitEvent = new UnityEvent();
+    public static UnityEvent ShowBouncedCount = new UnityEvent();
     public static UnityEvent<string> OnSideColorChange = new UnityEvent<string>();
     public static UnityEvent ToLeftWallChangeColorEvent = new UnityEvent();
     public static UnityEvent ToRightWallChangeColorEvent = new UnityEvent();
@@ -45,6 +47,10 @@ public class GlobalEventManager : MonoBehaviour
     {
         RestartMenu.Invoke();
     }
+    public static void InvokeShowHighscore()
+    {
+        ShowScoreAfterInitEvent.Invoke();
+    }
 
     public static void OnResetReceivedCoins()
     {
@@ -54,6 +60,10 @@ public class GlobalEventManager : MonoBehaviour
     public static void SendToCoinReceive()
     {
         CoinReceivedEvent.Invoke();
+    }
+    public static void InvokeShowBouncedCount()
+    {
+        ShowBouncedCount.Invoke();
     }
 
     public static void UpdateCoinsView()

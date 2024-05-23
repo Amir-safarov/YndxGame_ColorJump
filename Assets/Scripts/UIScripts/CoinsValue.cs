@@ -72,7 +72,6 @@ public class CoinsValue : MonoBehaviour
     public void GetAdReward(int usellesIndex)
     {
         _receivedCoins += 100;
-        print("Подарок есть");
         UpdateCurrentCoinsValue();
     }
 
@@ -83,24 +82,29 @@ public class CoinsValue : MonoBehaviour
         GetSavedCoins();
         ShowCoinsCount();
         _receivedCoins = 0;
-        print("Обновление данных монеток");
     }
 
     private void GetSavedCoins()
     {
         if (!PlayerPrefs.HasKey(CurrentCoins))
             PlayerPrefs.SetInt(CurrentCoins, Coins);
-        Coins = PlayerPrefs.GetInt(CurrentCoins);
+        if (YandexGame.savesData.money != 0)
+            Coins = YandexGame.savesData.money;
+        else
+            Coins = PlayerPrefs.GetInt(CurrentCoins);
     }
 
     private void SetCurrentCoins()
     {
         PlayerPrefs.SetInt(CurrentCoins, Coins + _receivedCoins);
         PlayerPrefs.Save();
-        if (!YandexGame.SDKEnabled)
-            return;
-        YandexGame.savesData.money = PlayerPrefs.GetInt(CurrentCoins);
-        YandexGame.SaveProgress();
+        Coins = PlayerPrefs.GetInt(CurrentCoins);
+        if (YandexGame.SDKEnabled)
+        {
+            YandexGame.savesData.money = Coins;
+            YandexGame.SaveProgress();
+            print($"Saved new MONEY count Yandex {YandexGame.savesData.money} - PP {Coins}");
+        }
     }
 
     private void ShowCoinsCount()
@@ -115,9 +119,9 @@ public class CoinsValue : MonoBehaviour
 
     private void AddCoins()
     {
-        if (GlobalVariables.doubleStarsPaid)
+        if (GlobalVariables.doubleStarsPaid || YandexGame.savesData.doubleStartsBought)
             _receivedCoins += 2;
-        else 
+        else
             _receivedCoins += 1;
     }
 }

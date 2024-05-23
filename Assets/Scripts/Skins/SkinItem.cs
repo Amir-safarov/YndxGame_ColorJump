@@ -107,6 +107,7 @@ public class SkinItem : MonoBehaviour
             {
                 YandexGame.savesData.skinsCount = GlobalVariables.BoughtSkinsCount;
                 YandexGame.SaveProgress();
+                print($"Saved SKINITEM skins count Yandex {YandexGame.savesData.skinsCount}");
             }
             Debug.Log($"Куплен скин: {_skinsType}");
         }

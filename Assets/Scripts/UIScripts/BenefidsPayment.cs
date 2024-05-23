@@ -19,7 +19,7 @@ public class BenefidsPayment : MonoBehaviour
         if (YandexGame.SDKEnabled)
             YandexGame.LoadProgress();
         YandexGame.PurchaseSuccessEvent += GetBenefids;
-   }
+    }
 
     private void OnDisable()
     {
@@ -35,17 +35,18 @@ public class BenefidsPayment : MonoBehaviour
 
     private void GetBenefids(string key)
     {
-        if(!YandexGame.SDKEnabled)
-            return;
         switch (key)
         {
             case "1":
-                GlobalVariables.doubleStarsPaid = true;
-                PlayerPrefs.SetInt("DoubleStarsPaid", 1);
-                YandexGame.savesData.doubleStartsBought = true;
-                YandexGame.SaveProgress();
-                print("UNITY PAID");
-                _doubleStarsObj.SetActive(!YandexGame.savesData.doubleStartsBought);
+                print($"DOUBLE STARS INVOKE \n Yandex {YandexGame.savesData.doubleStartsBought}");
+                if (YandexGame.SDKEnabled)
+                {
+                    YandexGame.savesData.doubleStartsBought = true;
+                    YandexGame.SaveProgress();
+                    print($"DOUBLE STARS PAID AND SAVED\n Yandex {YandexGame.savesData.doubleStartsBought}  {YandexGame.PaymentsData.purchased[1]}");
+                    _doubleStarsObj.SetActive(!YandexGame.savesData.doubleStartsBought);
+                    YandexGame.GetPayments();
+                }
                 break;
             default: break;
         }

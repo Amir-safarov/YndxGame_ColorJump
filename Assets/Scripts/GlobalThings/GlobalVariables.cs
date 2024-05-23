@@ -1,11 +1,11 @@
-using System;
-using System.Diagnostics.Tracing;
 using UnityEngine;
 using YG;
 
 public class GlobalVariables : MonoBehaviour
 {
     [SerializeField] private ShopItems shopItems;
+    [SerializeField] private GameObject _doubleStarsObj;
+
     public static int wallRank;
     public static int starsBonus;
     public static bool showBonuce;
@@ -15,8 +15,8 @@ public class GlobalVariables : MonoBehaviour
     {
         get
         {
-            if (_boughtSkinsCount < 0)
-                _boughtSkinsCount = 0;
+            if (_boughtSkinsCount < 1)
+                _boughtSkinsCount = 1;
             if (_boughtSkinsCount > _skinsCount)
                 _boughtSkinsCount = _skinsCount;
             return _boughtSkinsCount;
@@ -29,36 +29,30 @@ public class GlobalVariables : MonoBehaviour
     private static int _launchCountToBonus = 5;
 
     private const string LaunchCount = "LaunchCount";
-    private const string StarsBonus = "StarsBonus";
-    private const string PlayerAuthorized = "PlayerAuthorized";
-    private const string GameRated = "GameRated";
     private const string BoughtSkinCount = "BoughtSkinCount";
-    private const string DoubleStarsPaid = "BoughtSkinCount";
 
     private void Awake()
     {
         ResetToDeafoult();
-        YandexGame.GetDataEvent += LoadSavedCloud;
-        if (!PlayerPrefs.HasKey(GameRated))
-            PlayerPrefs.SetInt(GameRated, 0);
-        if (!PlayerPrefs.HasKey(PlayerAuthorized))
-            PlayerPrefs.SetInt(PlayerAuthorized, 0);
-        if (!PlayerPrefs.HasKey(DoubleStarsPaid))
-            PlayerPrefs.SetInt(DoubleStarsPaid, 0);
-
         if (!PlayerPrefs.HasKey(LaunchCount))
             PlayerPrefs.SetInt(LaunchCount, 0);
-        if (!PlayerPrefs.HasKey(StarsBonus))
-        {
-            PlayerPrefs.SetInt(StarsBonus, 1);
-            starsBonus = PlayerPrefs.GetInt(StarsBonus);
-        }
         _skinsCount = shopItems.skinItems.Count;
+    }
+
+    private void OnEnable()
+    {
+        YandexGame.GetDataEvent += LoadSavedCloud;
     }
 
     private void OnDisable()
     {
         YandexGame.GetDataEvent -= LoadSavedCloud;
+    }
+
+    private void Start()
+    {
+        if (YandexGame.SDKEnabled)
+            LoadSavedCloud();
     }
 
     public static void ResetGameCounter()
@@ -90,10 +84,11 @@ public class GlobalVariables : MonoBehaviour
         if (!PlayerPrefs.HasKey(BoughtSkinCount))
             PlayerPrefs.SetInt(BoughtSkinCount, YandexGame.savesData.skinsCount);
         else
-            PlayerPrefs.SetInt(BoughtSkinCount, 0);
+            PlayerPrefs.SetInt(BoughtSkinCount, 1);
         BoughtSkinsCount = PlayerPrefs.GetInt(BoughtSkinCount);
-        doubleStarsPaid = YandexGame.savesData.doubleStartsBought;
-        PlayerPrefs.SetInt(DoubleStarsPaid, 1);
-        print("DATA LOADED UNITY, количество скинов, оценка игры и куплен ли бонус");
+        print($"GLOBAL VARIABLES DATA LOADED,\n количество скинов Yandex {YandexGame.savesData.skinsCount} - PP {PlayerPrefs.GetInt(BoughtSkinCount)}");
+        print($"GLOBAL VARIABLES DATA LOADED 2{YandexGame.savesData.doubleStartsBought}");
+        _doubleStarsObj.SetActive(!YandexGame.savesData.doubleStartsBought);
+        YandexGame.SaveProgress();
     }
 }

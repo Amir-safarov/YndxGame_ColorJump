@@ -39,8 +39,6 @@ public class ThemeSwitcher : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _bestScore;
     [SerializeField] private TextMeshProUGUI _benefidsMainText;
     [SerializeField] private Image _benefidsBG;
-    [SerializeField] private TextMeshProUGUI _doubleStarText;
-    [SerializeField] private TextMeshProUGUI _noAdsText;
     [SerializeField] private Image _leaderboardBG;
     [SerializeField] private Text _leaderboardText;
     [SerializeField] private TextMeshProUGUI _leaderboardTitle;
@@ -86,8 +84,6 @@ public class ThemeSwitcher : MonoBehaviour
             _bestScoreText.color = lightTextThemeStyle;
             _bestScore.color = lightTextThemeStyle;
             _benefidsMainText.color = lightTextThemeStyle;
-            _doubleStarText.color = lightTextThemeStyle;
-            _noAdsText.color = lightTextThemeStyle;
             _benefidsBG.color = lightBackgroundThemeStyle;
             _restartBG.color = lightBackgroundThemeStyle;
             _skinBG.color = lightBackgroundThemeStyle;
@@ -112,8 +108,6 @@ public class ThemeSwitcher : MonoBehaviour
             _bestScoreText.color = darkTextThemeStyle;
             _bestScore.color = darkTextThemeStyle;
             _benefidsMainText.color = darkTextThemeStyle;
-            _doubleStarText.color = darkTextThemeStyle;
-            _noAdsText.color = darkTextThemeStyle;
             _benefidsBG.color = darkBackgroundThemeStyle;
             _restartBG.color = darkBackgroundThemeStyle;
             _skinBG.color = darkBackgroundThemeStyle;
